@@ -1,0 +1,71 @@
+@import 'colors'
+
+// Headings
+@mixin h1
+  color: $color--primary
+  font-weight: 700
+  font-size: 32px
+  line-height: 130%
+  letter-spacing: -0.64px
+
+@mixin h2
+  color: $color--primary
+  font-weight: 700
+  font-size: 28px
+  line-height: 130%
+  letter-spacing: -0.56px
+
+@mixin h3
+  color: $color--primary
+  font-weight: 700
+  font-size: 18px
+  line-height: 130%
+  letter-spacing: -0.44px
+
+// Body
+@mixin body--regular
+  color: $color--text
+  font-weight: 400
+  font-size: 16px
+  line-height: 175%
+  letter-spacing: 0.32px
+
+@mixin body--semiBold
+  @include body--regular
+  font-weight: 600
+
+@mixin body--bold
+  @include body--regular
+  font-weight: 700
+
+// Subhead
+@mixin subhead--regular
+  color: $color--text
+  font-weight: 400
+  font-size: 14px
+  line-height: 175%
+  letter-spacing: 0.28px
+
+@mixin subhead--semiBold
+  @include subhead--regular
+  font-weight: 600
+
+@mixin subhead--bold
+  @include subhead--regular
+  font-weight: 700
+
+// Caption
+@mixin caption--regular
+  color: $color--text
+  font-weight: 400
+  font-size: 10px
+  line-height: 175%
+  letter-spacing: 0.22px
+
+@mixin caption--semiBold
+  @include caption--regular
+  font-weight: 600
+
+@mixin caption--bold
+  @include caption--regular
+  font-weight: 700
