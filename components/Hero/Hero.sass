@@ -1,0 +1,30 @@
+@import 'styles/mixins'
+
+.hero
+    display: flex
+    align-items: center
+    gap: 1rem
+    margin: 3rem 0
+
+    @media screen and (max-width: 767.98px)
+        flex-wrap: wrap
+
+    &__content
+        flex-basis: 50%
+        @media screen and (max-width: 767.98px)
+            flex-basis: 100%
+
+    &__title
+        @include h1
+
+    &__subtitle
+        @include body--semiBold
+        
+        &:not(:last-of-type)
+            margin-bottom: 1rem
+
+    &__image
+        flex-basis: 50%
+        @media screen and (max-width: 767.98px)
+            display: none
+

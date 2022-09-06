@@ -4,6 +4,7 @@ import Link from 'next/link';
 import path from 'path';
 
 import Header from '../components/Header/Header';
+import Hero from '../components/Hero/Hero';
 import { IPost } from '../types';
 import { postFilePaths, POSTS_PATH } from '../utils/mdxUtils';
 
@@ -17,6 +18,7 @@ export default function Index({ posts }: IndexProps) {
   return (
     <>
       <Header />
+      <Hero />
       <ul>
         {posts.map((post) => (
           <li key={post.filePath}>
