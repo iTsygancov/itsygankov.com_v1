@@ -3,6 +3,7 @@ import matter from 'gray-matter';
 import Link from 'next/link';
 import path from 'path';
 
+import Header from '../components/Header/Header';
 import { IPost } from '../types';
 import { postFilePaths, POSTS_PATH } from '../utils/mdxUtils';
 
@@ -14,18 +15,21 @@ interface IndexProps {
 
 export default function Index({ posts }: IndexProps) {
   return (
-    <ul>
-      {posts.map((post) => (
-        <li key={post.filePath}>
-          <Link
-            as={`/posts/${post.filePath.replace(/\.mdx?$/, '')}`}
-            href={'/posts/[slug]'}
-          >
-            <a>{post.data.title}</a>
-          </Link>
-        </li>
-      ))}
-    </ul>
+    <>
+      <Header />
+      <ul>
+        {posts.map((post) => (
+          <li key={post.filePath}>
+            <Link
+              as={`/posts/${post.filePath.replace(/\.mdx?$/, '')}`}
+              href={'/posts/[slug]'}
+            >
+              <a>{post.data?.title}</a>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </>
   );
 }
 

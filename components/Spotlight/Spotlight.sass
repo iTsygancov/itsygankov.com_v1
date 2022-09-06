@@ -1,0 +1,53 @@
+@import "styles/colors"
+@import "styles/mixins"
+
+.spotlight
+
+  &__button
+    background-color: #FFFFFF
+    border: 1px solid $color--grey-2
+    border-radius: .5rem
+    color: $color--grey-2
+    display: flex
+    align-items: center
+    justify-content: space-between
+    height: 36px
+    width: 240px
+    padding: 6px 6px 6px 12px
+    cursor: pointer
+
+    @media screen and (max-width: 767.98px)
+      width: 36px
+      padding: 4px
+      justify-content: center
+      border: none
+
+    &-icon
+      display: flex
+      align-items: center
+      justify-content: center
+      width: 1rem
+      height: 1rem
+      position: relative
+
+      @media screen and (max-width: 767.98px)
+        color: $color--text
+        width: 1.75rem
+        height: 1.75rem
+
+    &-text
+      @include subhead--regular
+      color: $color--grey-2
+
+      @media screen and (max-width: 767.98px)
+        display: none
+
+  &__tag
+    @include caption--bold
+    background-color: $color--grey-3
+    border-radius: .25rem
+    padding: .25rem .5rem
+
+    @media screen and (max-width: 767.98px)
+      display: none
+
