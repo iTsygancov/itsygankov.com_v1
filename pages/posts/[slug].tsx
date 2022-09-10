@@ -1,3 +1,4 @@
+import { Container } from '@mantine/core';
 import fs from 'fs';
 import matter from 'gray-matter';
 import { GetStaticPaths, GetStaticProps } from 'next';
@@ -8,6 +9,7 @@ import { MDXRemote } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 import path from 'path';
 
+import Header from '../../components/Header/Header';
 import { IFrontMatter } from '../../types';
 import { postFilePaths, POSTS_PATH } from '../../utils/mdxUtils';
 
@@ -30,22 +32,18 @@ const components = {
 export default function PostPage({ source, frontMatter }: PostPageProps) {
   return (
     <>
-      <header>
-        <nav>
-          <Link href="/">
-            <a>👈 Go back home</a>
-          </Link>
-        </nav>
-      </header>
-      <div className="post-header">
-        <h1>{frontMatter.title}</h1>
-        {frontMatter.description && (
-          <p className="description">{frontMatter.description}</p>
-        )}
-      </div>
-      <main>
-        <MDXRemote {...source} components={components} />
-      </main>
+      <Header />
+      <Container size='xl'>
+        <div className="post-header">
+          <h1>{frontMatter.title}</h1>
+          {frontMatter.description && (
+            <p className="description">{frontMatter.description}</p>
+          )}
+        </div>
+        <main>
+          <MDXRemote {...source} components={components} />
+        </main>
+      </Container>
     </>
   );
 }
