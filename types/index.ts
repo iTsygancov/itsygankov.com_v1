@@ -1,5 +1,8 @@
 export type IFrontMatter = {
+    category: string,
+    date: string,
     description: string,
+    section: string,
     title: string,
 }
 

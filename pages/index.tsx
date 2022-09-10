@@ -1,10 +1,10 @@
 import fs from 'fs';
 import matter from 'gray-matter';
-import Link from 'next/link';
 import path from 'path';
 
 import Header from '../components/Header/Header';
 import Hero from '../components/Hero/Hero';
+import PostList from '../components/Post/_List/PostList';
 import { IPost } from '../types';
 import { postFilePaths, POSTS_PATH } from '../utils/mdxUtils';
 
@@ -19,18 +19,7 @@ export default function Index({ posts }: IndexProps) {
     <>
       <Header />
       <Hero />
-      <ul>
-        {posts.map((post) => (
-          <li key={post.filePath}>
-            <Link
-              as={`/posts/${post.filePath.replace(/\.mdx?$/, '')}`}
-              href={'/posts/[slug]'}
-            >
-              <a>{post.data?.title}</a>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <PostList posts={posts} />
     </>
   );
 }
