@@ -4,7 +4,7 @@ import path from 'path';
 
 import Header from '../components/Header/Header';
 import Hero from '../components/Hero/Hero';
-import PostList from '../components/Post/_List/PostList';
+import PopularPosts from '../components/PopularPosts/PopularPosts';
 import { IPost } from '../types';
 import { postFilePaths, POSTS_PATH } from '../utils/mdxUtils';
 
@@ -15,11 +15,15 @@ interface IndexProps {
 
 
 export default function Index({ posts }: IndexProps) {
+  const renderPopularPosts = () => {
+    const popularPosts = posts.filter((post) => post.data.section === 'popular');
+    return popularPosts.length !== 0 && <PopularPosts posts={popularPosts} />;
+  };
   return (
     <>
       <Header />
       <Hero />
-      <PostList posts={posts} />
+      {renderPopularPosts()}
     </>
   );
 }
