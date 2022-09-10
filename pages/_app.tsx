@@ -3,6 +3,8 @@ import '../styles/main.sass';
 import { MantineProvider } from '@mantine/core';
 import type { AppProps } from 'next/app';
 
+import Layout from '../components/Layout/Layout';
+
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -30,7 +32,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         },
       }}
     >
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </MantineProvider>
   );
 }

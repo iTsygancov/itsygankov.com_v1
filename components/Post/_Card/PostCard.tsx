@@ -21,14 +21,12 @@ const PostCard = ({ post }: PostCardProps) => {
           href={'/posts/[slug]'}
         >
           <h3 className={`${cssPrefix}__title`}>
-            
             <a>{title}</a>
           </h3>
         </Link>
       </div>
       <div className={`${cssPrefix}__category`}>{category}</div>
     </div>
-
   );
 };
 

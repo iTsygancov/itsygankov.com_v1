@@ -1,4 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap')
+@import 'styles/mixins'
+@import 'styles/colors'
 
 html, body
   font-family: 'Open Sans', sans-serif
+
+h1
+  @include h1
+
+h2
+  @include h2
+
+h3
+  @include h3
+
+p
+  @include body--regular
+
+strong
+  @include body--bold
+
+hr
+  border: 1px solid $color--grey-3
+
+a
+  color: $color--primary

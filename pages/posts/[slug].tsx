@@ -31,20 +31,17 @@ const components = {
 
 export default function PostPage({ source, frontMatter }: PostPageProps) {
   return (
-    <>
-      <Header />
-      <Container size='xl'>
-        <div className="post-header">
-          <h1>{frontMatter.title}</h1>
-          {frontMatter.description && (
-            <p className="description">{frontMatter.description}</p>
-          )}
-        </div>
-        <main>
-          <MDXRemote {...source} components={components} />
-        </main>
-      </Container>
-    </>
+    <Container size='xl'>
+      <div className="post-header">
+        <h1>{frontMatter.title}</h1>
+        {frontMatter.description && (
+          <p className="description">{frontMatter.description}</p>
+        )}
+      </div>
+      <main>
+        <MDXRemote {...source} components={components} />
+      </main>
+    </Container>
   );
 }
 
