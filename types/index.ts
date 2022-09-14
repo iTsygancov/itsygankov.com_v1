@@ -2,6 +2,7 @@ export type IFrontMatter = {
     category: string,
     date: string,
     description: string,
+    id: string,
     section: string,
     title: string,
 }
