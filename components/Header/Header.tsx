@@ -39,9 +39,7 @@ function Header() {
                     <Navbar style={{ ...styles }} />
                   )}
                 </Transition>
-                <Link href='/'>
-                  <a className={`${cssPrefix}__logo`}>{'< iTsygankov />'}</a>
-                </Link>
+                <Logo />
               </>
           }
         </div>
