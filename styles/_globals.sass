@@ -5,6 +5,11 @@
 html, body
   font-family: 'Open Sans', sans-serif
 
+#__next
+  display: flex
+  flex-direction: column
+  min-height: 100vh
+
 h1
   @include h1
 
@@ -25,3 +30,10 @@ hr
 
 a
   color: $color--primary
+
+.content
+  flex-grow: 1
+
+hr
+  border: .5px solid $color--grey-2
+  width: 100%
