@@ -1,4 +1,5 @@
 import { Container } from '@mantine/core';
+import Link from 'next/link';
 
 import { IPost } from '../../types';
 import PostList from '../Post/_List/PostList';
@@ -14,7 +15,12 @@ const LatestPosts = ({ posts }: LatestPostsProps) => {
   return (
     <div className={cssPrefix}>
       <Container size='xl'>
-        <h2 className={`${cssPrefix}__title`}>Последние посты</h2>
+        <div className={`${cssPrefix}__header`}>
+          <h2 className={`${cssPrefix}__title`}>Последние посты</h2>
+          <Link href='posts/'>
+            <a className={`${cssPrefix}__link`}>Смотреть все</a>
+          </Link>
+        </div>
         <PostList posts={posts} />
       </Container>
     </div>
