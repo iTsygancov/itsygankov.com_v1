@@ -4,6 +4,7 @@ import { SpotlightProvider } from '@mantine/spotlight';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
+import Logo from '../Logo/Logo';
 import Navbar from '../Navbar/Navbar';
 import Spotlight from '../Spotlight/Spotlight';
 import { getSpotlightActions } from '../Spotlight/Spotlight.utils';
@@ -24,9 +25,7 @@ function Header() {
             matches
               ?
               <>
-                <Link href='/'>
-                  <a className={`${cssPrefix}__logo`}>{'< iTsygankov />'}</a>
-                </Link>
+                <Logo />
                 <Navbar />
               </>
               :
