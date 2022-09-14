@@ -1,4 +1,4 @@
-import { Container } from '@mantine/core';
+import { Container, Grid } from '@mantine/core';
 import fs from 'fs';
 import matter from 'gray-matter';
 import { GetStaticPaths, GetStaticProps } from 'next';
@@ -32,15 +32,19 @@ const components = {
 export default function PostPage({ source, frontMatter }: PostPageProps) {
   return (
     <Container size='xl'>
-      <div className="post-header">
-        <h1>{frontMatter.title}</h1>
-        {frontMatter.description && (
-          <p className="description">{frontMatter.description}</p>
-        )}
-      </div>
-      <main>
-        <MDXRemote {...source} components={components} />
-      </main>
+      <Grid>
+        <Grid.Col md={8}>
+          <div className="post-header">
+            <h1>{frontMatter.title}</h1>
+            {frontMatter.description && (
+              <p className="description">{frontMatter.description}</p>
+            )}
+          </div>
+          <main>
+            <MDXRemote {...source} components={components} />
+          </main>
+        </Grid.Col>
+      </Grid>
     </Container>
   );
 }
