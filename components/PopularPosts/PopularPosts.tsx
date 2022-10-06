@@ -14,7 +14,7 @@ const PopularPosts = ({ posts }: PopularPostsProps) => {
   return (
     <div className={cssPrefix}>
       <Container size='xl'>
-        <h2 className={`${cssPrefix}__title`}>Популярные посты</h2>
+        <h2 className={`${cssPrefix}__title`}>Popular posts</h2>
         <PostList posts={posts} />
       </Container>
     </div>

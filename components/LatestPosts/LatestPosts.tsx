@@ -16,9 +16,9 @@ const LatestPosts = ({ posts }: LatestPostsProps) => {
     <div className={cssPrefix}>
       <Container size='xl'>
         <div className={`${cssPrefix}__header`}>
-          <h2 className={`${cssPrefix}__title`}>Последние посты</h2>
+          <h2 className={`${cssPrefix}__title`}>Latest posts</h2>
           <Link href='posts/'>
-            <a className={`${cssPrefix}__link`}>Смотреть все</a>
+            <a className={`${cssPrefix}__link`}>View all</a>
           </Link>
         </div>
         <PostList posts={posts} />

@@ -14,7 +14,7 @@ const Spotlight = () => {
           <div className={`${cssPrefix}__button-icon`}>
             <IconSearch />
           </div>
-          <span className={`${cssPrefix}__button-text`}>Искать</span>
+          <span className={`${cssPrefix}__button-text`}>Search</span>
         </Group>
         <Group className={`${cssPrefix}__tag`}>
           ⌘ + K

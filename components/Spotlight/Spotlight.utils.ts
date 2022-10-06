@@ -6,7 +6,7 @@ export const getSpotlightActions = (router: NextRouter) => {
   const actions: SpotlightAction[] = [
     {
       title: 'Post title',
-      description: 'Тэги: javascript, nodejs, react',
+      description: 'Tags: javascript, nodejs, react',
       onTrigger: () => router.push('/'),
     },
     {

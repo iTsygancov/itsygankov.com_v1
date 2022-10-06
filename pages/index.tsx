@@ -2,7 +2,6 @@ import fs from 'fs';
 import matter from 'gray-matter';
 import path from 'path';
 
-import Header from '../components/Header/Header';
 import Hero from '../components/Hero/Hero';
 import LatestPosts from '../components/LatestPosts/LatestPosts';
 import PopularPosts from '../components/PopularPosts/PopularPosts';
