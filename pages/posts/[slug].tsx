@@ -4,12 +4,10 @@ import matter from 'gray-matter';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
-import Link from 'next/link';
 import { MDXRemote } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 import path from 'path';
 
-import Header from '../../components/Header/Header';
 import { IFrontMatter } from '../../types';
 import { postFilePaths, POSTS_PATH } from '../../utils/mdxUtils';
 
