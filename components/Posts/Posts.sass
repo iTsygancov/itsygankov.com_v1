@@ -1,0 +1,15 @@
+@import 'styles/mixins'
+
+.posts
+
+    &__list
+        display: flex
+        flex-direction: column
+        gap: 1rem
+
+    &__link
+        @include h3
+        text-decoration: none
+
+        &:hover
+            text-decoration: underline
