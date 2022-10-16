@@ -1,7 +1,6 @@
 import { Burger, Container, Transition } from '@mantine/core';
 import { useDisclosure, useMediaQuery } from '@mantine/hooks';
 import { SpotlightProvider } from '@mantine/spotlight';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import Logo from '../Logo/Logo';
@@ -36,7 +35,7 @@ function Header() {
                 />
                 <Transition transition="fade" mounted={opened}>
                   {(styles) => (
-                    <Navbar style={{ ...styles }} />
+                    <Navbar handleClick={toggle} style={{ ...styles }} />
                   )}
                 </Transition>
                 <Logo />
