@@ -13,7 +13,6 @@ interface IndexProps {
   posts: IPost[],
 }
 
-
 export default function Index({ posts }: IndexProps) {
   const renderPopularPosts = () => {
     const popularPosts = posts.filter((post) => post.data.section === 'popular');
