@@ -7,7 +7,7 @@
   font-size: 32px
   line-height: 130%
   letter-spacing: -0.64px
-  margin-bottom: 2rem
+  margin-bottom: 3rem
 
 @mixin h2
   color: $color--secondary
@@ -71,3 +71,25 @@
 @mixin caption--bold
   @include caption--regular
   font-weight: 700
+
+@mixin button--primary
+  @include subhead--semiBold
+  background-color: $color--primary
+  border: none
+  border-radius: .5rem
+  color: #FFFFFF
+  cursor: pointer
+  padding: .5rem 1rem
+  transition: all 50ms ease-in-out
+
+  &:hover
+    background-color: #1971C1
+    transition: all 50ms ease-in-out
+  
+  &:active
+    box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.25)
+    outline: none
+      
+  
+
+  
