@@ -24,7 +24,7 @@ const Navbar = ({ style, handleClick }: NavbarProps) => {
             <a className={`${cssPrefix}__menu-link`} onClick={handleClick}>About me</a>
           </Link>
         </li>
-        <li className={router.pathname === '/contact' ? `${cssPrefix}__menu-item ${cssPrefix}__menu-item--active` : `${cssPrefix}__menu-item` }>
+        <li className={router.pathname === '/contacts' ? `${cssPrefix}__menu-item ${cssPrefix}__menu-item--active` : `${cssPrefix}__menu-item` }>
           <Link href='/contacts'>
             <a className={`${cssPrefix}__menu-link`} onClick={handleClick}>Contacts</a>
           </Link>
