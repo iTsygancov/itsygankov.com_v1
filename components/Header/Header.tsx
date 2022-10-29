@@ -33,12 +33,12 @@ function Header() {
                   opened={opened}
                   onClick={toggle}
                 />
-                <Transition transition="fade" mounted={opened}>
+                <Transition transition='scale-x' mounted={opened}>
                   {(styles) => (
                     <Navbar handleClick={toggle} style={{ ...styles }} />
                   )}
                 </Transition>
-                <Logo />
+                <Logo opened={opened} handleClick={toggle} />
               </>
           }
         </div>
