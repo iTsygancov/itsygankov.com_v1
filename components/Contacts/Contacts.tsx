@@ -10,39 +10,45 @@ const cssPrefix = 'contacts';
 
 const Contacts = () => {
   return (
-    <Container size='xl'>
+    <Container size="xl">
       <div className={cssPrefix}>
         <h1 className={`${cssPrefix}__title`}>Contacts</h1>
-        <Grid gutter={64}>
+        <Grid gutter="xl">
           <Grid.Col lg={4} md={5}>
             <div className={`${cssPrefix}__description`}>
-              <h2 className={`${cssPrefix}__description-title`}>How can I help?</h2>
-              <p className={`${cssPrefix}__description-text`}>Fill out the form or contact me:</p>
+              <h2 className={`${cssPrefix}__description-title`}>
+                How can I help?
+              </h2>
+              <p className={`${cssPrefix}__description-text`}>
+                Fill out the form or contact me:
+              </p>
             </div>
             <div className={`${cssPrefix}__links`}>
               <a
                 className={`${cssPrefix}__link`}
-                href='mailto:i.tsygancov@yandex.ru'
+                href="mailto:i.tsygancov@yandex.ru"
+                target='blank'
               >
                 <Image
                   className={`${cssPrefix}__link-icon`}
                   src={message}
-                  layout='intrinsic'
-                  alt='Message icon'
+                  layout="intrinsic"
+                  alt="Message icon"
                 />
-                  i.tsygancov@yandex.ru
+                i.tsygancov@yandex.ru
               </a>
               <a
                 className={`${cssPrefix}__link`}
-                href='https://telegram.me/I_Tsygankov'
+                href="https://t.me/I_Tsygankov"
+                target='blank'
               >
                 <Image
                   className={`${cssPrefix}__link-icon`}
                   src={telegram}
-                  layout='intrinsic'
-                  alt='Telegram icon'
+                  layout="intrinsic"
+                  alt="Telegram icon"
                 />
-                  @I_Tsygankov
+                @I_Tsygankov
               </a>
             </div>
           </Grid.Col>

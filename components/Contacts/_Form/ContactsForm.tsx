@@ -24,7 +24,7 @@ const ContactsForm = () => {
         label='Message'
         minRows={6}
       />
-      <button className={`${cssPrefix}__button`}>Send email</button>
+      <button className={`${cssPrefix}__button`}>Send</button>
     </form>
   );
 };
