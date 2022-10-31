@@ -29,6 +29,7 @@
       flex-grow: 1
 
     &-item
+      user-select: none
 
       &--active
         position: relative
@@ -40,6 +41,9 @@
           height: 2px
           background-color: $color--primary
           position: absolute
+
+        & > a:hover
+          text-decoration: none
 
     &-link
       color: $color--text

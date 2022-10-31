@@ -2,13 +2,20 @@
 
 
 .logo
-    @include h3
-    text-decoration: none
-    margin-right: 4rem
+  @include h3
+  text-decoration: none
+  margin-right: 4rem
 
-    @media screen and (max-width: 767.98px)
-        text-align: center
-        margin: 0 auto
+  &:hover
+    text-decoration: underline
 
-    &:visited
-        color: $color--secondary
+  &:visited
+    color: $color--secondary
+
+  @media screen and (max-width: 767.98px)
+    text-align: center
+    margin: 0 auto
+
+    &:hover
+      text-decoration: none
+
