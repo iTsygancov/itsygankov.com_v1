@@ -8,6 +8,7 @@ import { MDXRemote } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 import path from 'path';
 
+import Post from '../../components/Post/Post';
 import { IFrontMatter } from '../../types';
 import { postFilePaths, POSTS_PATH } from '../../utils/mdxUtils';
 
@@ -22,25 +23,19 @@ type PostPageProps = {
 }
 
 
-const components = {
-  CodeHighlighter: dynamic(() => import('../../components/CodeHighlighter/CodeHighlighter'), { ssr: false }),
-  Head,
-};
-
 export default function PostPage({ source, frontMatter }: PostPageProps) {
+  const components = {
+    CodeHighlighter: dynamic(() => import('../../components/CodeHighlighter/CodeHighlighter'), { ssr: false }),
+    Head,
+  };
+
   return (
     <Container size='xl'>
       <Grid>
         <Grid.Col md={8}>
-          <div className="post-header">
-            <h1>{frontMatter.title}</h1>
-            {frontMatter.description && (
-              <p className="description">{frontMatter.description}</p>
-            )}
-          </div>
-          <main>
+          <Post frontMatter={frontMatter}>
             <MDXRemote {...source} components={components} />
-          </main>
+          </Post>
         </Grid.Col>
       </Grid>
     </Container>

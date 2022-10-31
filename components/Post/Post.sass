@@ -1,0 +1,31 @@
+.post
+
+  &__title
+    margin-bottom: 0
+
+  &__header
+    margin-bottom: 3rem
+    display: flex
+    flex-direction: column
+    gap: .75rem
+
+  &__description
+    display: flex
+    align-items: center
+    gap: .5rem
+
+  &__category
+    @include subhead--regular
+    padding: .25rem .5rem
+    background-color: #FFFFFF
+    border: 1px solid $color--grey-2
+    border-radius: .5rem
+    user-select: none
+    font-size: 12px
+    flex-grow: 0
+    align-self: flex-start
+    text-decoration: none
+    cursor: pointer
+
+    &:hover
+      background-color: $color--grey-3
