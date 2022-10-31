@@ -10,7 +10,6 @@ type LayoutProps = {
     children: ReactNode
 }
 
-
 const Layout = ({ children }: LayoutProps) => {
   const router = useRouter();
   return (

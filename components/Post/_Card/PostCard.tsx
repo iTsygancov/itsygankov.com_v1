@@ -25,7 +25,12 @@ const PostCard = ({ post }: PostCardProps) => {
           </h3>
         </Link>
       </div>
-      <div className={`${cssPrefix}__category`}>{category}</div>
+      <Link
+        href={{ pathname: '/posts', query: { category } }} 
+        key={category}
+      >
+        <a className={`${cssPrefix}__category`} > {category} </a>
+      </Link>
     </div>
   );
 };
