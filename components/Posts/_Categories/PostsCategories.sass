@@ -1,0 +1,33 @@
+@import 'styles/colors'
+@import 'styles/mixins'
+
+.postsCategories
+  display: flex
+  flex-direction: column
+  gap: 2rem
+  background-color: $color--grey-3
+  border-radius: .5rem
+  padding: 1.5rem
+
+  &__title
+    @include h3
+    padding: .25rem .75rem
+
+  &__list
+    display: flex
+    flex-direction: column
+
+  &__link
+    @include body--semiBold
+    text-decoration: none
+    padding: .25rem .75rem
+    user-select: none
+
+    &:hover
+      text-decoration: underline
+
+    &--active
+      background-color: $color--secondary
+      border-radius: .5rem
+      color: #FFFFFF
+      pointer-events: none
