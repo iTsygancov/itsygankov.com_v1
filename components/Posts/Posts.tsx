@@ -16,7 +16,25 @@ const Posts = ({ posts }: PostsProps) => {
   const router = useRouter();
   const query = router.query;
   const sortedPosts = posts.sort((a, b) => (a.data.id < b.data.id ? 1 : -1));
-  const categories = posts.reduce((acc: string[], post) => {
+
+  // TODO: add sorting to utils
+  const enPosts = sortedPosts.reduce((acc: IPost[], post) => {
+    if (!post.filePath.replace(/\.mdx?$/, '').endsWith('-ru')) {
+      acc.push(post);
+    }
+    return acc;
+  }, []);
+  const ruPosts = sortedPosts.reduce((acc: IPost[], post) => {
+    if (post.filePath.replace(/\.mdx?$/, '').endsWith('-ru')) {
+      acc.push(post);
+    }
+    return acc;
+  }, []);
+  const enCategories = enPosts.reduce((acc: string[], post) => {
+    if (!acc.includes(post.data.category)) acc.push(post.data.category);
+    return acc;
+  }, []);
+  const ruCategories = ruPosts.reduce((acc: string[], post) => {
     if (!acc.includes(post.data.category)) acc.push(post.data.category);
     return acc;
   }, []);
@@ -26,30 +44,63 @@ const Posts = ({ posts }: PostsProps) => {
         <Grid.Col lg={9}>
           <h1 className={`${cssPrefix}__title`}>{query.category || 'Posts'}</h1>
           <div className={`${cssPrefix}__list`}>
-            {Object.keys(query).length !== 0
-              ? sortedPosts.map((post) => post.data.category === query.category
-              && (
-                <Link
-                  as={`/posts/${post.filePath.replace(/\.mdx?$/, '')}`}
-                  href={'/posts/[slug]'}
-                  key={post.data.id}
-                >
-                  <a className={`${cssPrefix}__link`}>{post.data.title}</a>
-                </Link>
-              ))
-              : sortedPosts.map((post) => (
-                <Link
-                  as={`/posts/${post.filePath.replace(/\.mdx?$/, '')}`}
-                  href={'/posts/[slug]'}
-                  key={post.data.id}
-                >
-                  <a className={`${cssPrefix}__link`}>{post.data.title}</a>
-                </Link>
-              ))}
+            {
+              router.locale === 'en' && Object.keys(query).length !== 0
+                ? enPosts.map((post) => post.data.category === query.category
+                && (
+                  <Link
+                    as={`/posts/${post.filePath.replace(/\.mdx?$/, '')}`}
+                    href={'/posts/[slug]'}
+                    key={post.data.id}
+                  >
+                    <a className={`${cssPrefix}__link`}>{post.data.title}</a>
+                  </Link>
+                ))
+                : router.locale === 'en' && enPosts.map((post) => (
+                  <Link
+                    as={`/posts/${post.filePath.replace(/\.mdx?$/, '')}`}
+                    href={'/posts/[slug]'}
+                    key={post.data.id}
+                  >
+                    <a className={`${cssPrefix}__link`}>
+                      {post.data.title}
+                    </a>
+                  </Link>
+                ))
+            }
+
+            {
+              router.locale === 'ru' && Object.keys(query).length !== 0
+                ? ruPosts.map((post) => post.data.category === query.category
+                && (
+                  <Link
+                    as={`/posts/${post.filePath.replace(/\.mdx?$/, '')}`}
+                    href={'/posts/[slug]'}
+                    key={post.data.id}
+                  >
+                    <a className={`${cssPrefix}__link`}>{post.data.title}</a>
+                  </Link>
+                ))
+                : router.locale === 'ru' && ruPosts.map((post) => (
+                  <Link
+                    as={`/posts/${post.filePath.replace(/\.mdx?$/, '')}`}
+                    href={'/posts/[slug]'}
+                    key={post.data.id}
+                  >
+                    <a className={`${cssPrefix}__link`}>
+                      {post.data.title}
+                    </a>
+                  </Link>
+                ))
+            }
           </div>
         </Grid.Col>
         <Grid.Col lg={3}>
-          <PostsCategories categories={categories} />
+          {
+            router.locale === 'en'
+              ? <PostsCategories categories={enCategories} />
+              : <PostsCategories categories={ruCategories} />
+          }
         </Grid.Col>
       </Grid>
     </Container>

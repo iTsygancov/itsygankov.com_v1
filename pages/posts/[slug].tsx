@@ -58,10 +58,21 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   };
 };
 
+type IPaths = {
+  params: {
+    slug: string
+  },
+  locale: string
+}
+
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = postFilePaths
     .map((path) => path.replace(/\.mdx?$/, ''))
-    .map((slug) => ({ params: { slug } }));
+    .reduce((acc: IPaths[], slug) => {
+      acc.push({ params: { slug }, locale: 'en' });
+      acc.push({ params: { slug }, locale: 'ru' });
+      return acc;
+    }, []);
 
   return {
     paths,
