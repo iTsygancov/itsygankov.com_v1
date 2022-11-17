@@ -5,34 +5,34 @@ import { IFrontMatter } from '../../types';
 
 
 type PostProps = {
-  frontMatter: IFrontMatter,
-  children: ReactNode,
-}
+  frontMatter: IFrontMatter;
+  children: ReactNode;
+};
 
 const cssPrefix = 'post';
 
 const Post = ({ children, frontMatter }: PostProps) => {
+  const { title, category, date } = frontMatter;
+
   return (
     <div className={cssPrefix}>
       <div className={`${cssPrefix}__header`}>
-        <h1 className={`${cssPrefix}__title`}>{frontMatter.title}</h1>
+        <h1 className={`${cssPrefix}__title`}>{title}</h1>
         <div className={`${cssPrefix}__description`}>
           <Link
             href={{
               pathname: '/posts',
-              query: { category: frontMatter.category },
-            }} 
-            key={frontMatter.category}
+              query: { category: category },
+            }}
+            key={category}
           >
-            <a className={`${cssPrefix}__category`} > {frontMatter.category} </a>
+            <a className={`${cssPrefix}__category`}>{category}</a>
           </Link>
           <span className={`${cssPrefix}__separator`}>&#x2022;</span>
-          <p className={`${cssPrefix}__date`}> {frontMatter.date} </p>
+          <p className={`${cssPrefix}__date`}>{date}</p>
         </div>
       </div>
-      <main>
-        {children}
-      </main>
+      <main>{children}</main>
     </div>
   );
 };
