@@ -1,36 +1,30 @@
 import { SpotlightAction } from '@mantine/spotlight/lib/types';
 import { NextRouter } from 'next/router';
 
+import { IPost } from '../../types';
 
-export const getSpotlightActions = (router: NextRouter) => {
-  const actions: SpotlightAction[] = [
-    {
-      title: 'Home',
-      group: 'Navigation',
-      onTrigger: () => router.push('/'),
-    },
-    {
-      title: 'About me',
-      group: 'Navigation',
-      onTrigger: () => router.push('/about'),
-    },
-    {
-      title: 'Contacts',
-      group: 'Navigation',
-      onTrigger: () => router.push('/contacts'),
-    },
-    {
-      title: 'Example post',
-      description: 'Node.js',
-      group: 'Posts',
-      onTrigger: () => router.push('/posts/example-post'),
-    },
-    {
-      title: 'Example post 2',
-      description: 'React',
-      group: 'Posts',
-      onTrigger: () => router.push('/posts/example-post-2'),
-    },
-  ];
-  return actions;
+
+export const getSpotlightActions = async (router: NextRouter) => {
+  const data = fetch('/api/posts').then((posts) =>
+    posts.json().then((posts: IPost[]) => {
+      const actionsFromPosts: SpotlightAction[] = posts.reduce(
+        (acc: SpotlightAction[], post: IPost) => {
+          if (router.locale === 'en' && !post.filePath.replace(/\.mdx?$/, '').endsWith('-ru')) {
+            acc.push({
+              title: post.data.title,
+              onTrigger: () => router.push(`/posts/${post.filePath.replace(/\.mdx?$/, '')}`),
+            });
+          }
+          if (router.locale === 'ru' && post.filePath.replace(/\.mdx?$/, '').endsWith('-ru')) {
+            acc.push({
+              title: post.data.title,
+              onTrigger: () => router.push(`/posts/${post.filePath.replace(/\.mdx?$/, '')}`),
+            });
+          }
+          return acc;
+        }, []);
+      return actionsFromPosts;
+    }),
+  );
+  return data;
 };
