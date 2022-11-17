@@ -9,12 +9,14 @@ import Logo from '../Logo/Logo';
 import Navbar from '../Navbar/Navbar';
 import Spotlight from '../Spotlight/Spotlight';
 import { getSpotlightActions } from '../Spotlight/Spotlight.utils';
+import { en, ru } from './Header.locale';
 
 
 const cssPrefix = 'header';
 
 function Header() {
   const router = useRouter();
+  const currentLocale = router.locale === 'en' ? en : ru;
   const matches = useMediaQuery('(min-width: 767.98px)');
   const [opened, { toggle }] = useDisclosure(false);
   const [actions, setActions] = useState<SpotlightAction[]>([]);
@@ -23,7 +25,7 @@ function Header() {
     getSpotlightActions(router).then((actions) => {
       setActions(actions);
     });
-  });
+  }, []);
 
   return (
     <header className={cssPrefix}>
@@ -48,9 +50,11 @@ function Header() {
         </div>
         <SpotlightProvider
           actions={actions}
-          searchPlaceholder="Search..."
+          searchPlaceholder={currentLocale.spotlightProvider.searchPlaceholder}
           shortcut="mod + k"
-          nothingFoundMessage="Nothing found..."
+          nothingFoundMessage={
+            currentLocale.spotlightProvider.nothingFoundMessage
+          }
         >
           <Spotlight />
         </SpotlightProvider>

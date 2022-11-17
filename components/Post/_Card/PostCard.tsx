@@ -12,6 +12,7 @@ const cssPrefix = 'postCard';
 
 const PostCard = ({ post }: PostCardProps) => {
   const { date, title, category } = post.data;
+
   return (
     <div className={cssPrefix}>
       <div className={`${cssPrefix}__header`}>

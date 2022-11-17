@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 
 import hero from '../../public/assets/hero.svg';
-import { en, ru } from './Hero.locales';
+import { en, ru } from './Hero.locale';
 
 
 const cssPrefix = 'hero';

@@ -1,26 +1,32 @@
 import { Container, Grid } from '@mantine/core';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 import message from '../../public/assets/icon-message.svg';
 import telegram from '../../public/assets/icon-telegram.svg';
 import ContactsForm from './_Form/ContactsForm';
+import { en, ru } from './Contacts.locale';
 
 
 const cssPrefix = 'contacts';
 
 const Contacts = () => {
+  const router = useRouter();
+  const currentLocale = router.locale === 'en' ? en : ru;
   return (
     <Container size="xl">
       <div className={cssPrefix}>
-        <h1 className={`${cssPrefix}__title`}>Contacts</h1>
+        <h1 className={`${cssPrefix}__title`}>
+          {currentLocale.title}
+        </h1>
         <Grid gutter="xl">
           <Grid.Col lg={4} md={5}>
             <div className={`${cssPrefix}__description`}>
               <h2 className={`${cssPrefix}__description-title`}>
-                How can I help?
+                {currentLocale.descriptionTitle}
               </h2>
               <p className={`${cssPrefix}__description-text`}>
-                Fill out the form or contact me:
+                {currentLocale.descriptionText}
               </p>
             </div>
             <div className={`${cssPrefix}__links`}>
