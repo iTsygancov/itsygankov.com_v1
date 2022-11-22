@@ -34,7 +34,11 @@ const Posts = ({ posts }: PostsProps) => {
     return acc;
   }, []);
 
-  const categories = ruPosts.reduce((acc: string[], post) => {
+  const enCategories = enPosts.reduce((acc: string[], post) => {
+    if (!acc.includes(post.data.category)) acc.push(post.data.category);
+    return acc;
+  }, []);
+  const ruCategories = ruPosts.reduce((acc: string[], post) => {
     if (!acc.includes(post.data.category)) acc.push(post.data.category);
     return acc;
   }, []);
@@ -101,7 +105,11 @@ const Posts = ({ posts }: PostsProps) => {
           </div>
         </Grid.Col>
         <Grid.Col lg={3}>
-          <PostsCategories categories={categories} />
+          {
+            router.locale === 'en'
+              ? <PostsCategories categories={enCategories} />
+              : <PostsCategories categories={ruCategories} />
+          }
         </Grid.Col>
       </Grid>
     </Container>
