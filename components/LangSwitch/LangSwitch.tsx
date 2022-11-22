@@ -10,10 +10,21 @@ const LangSwitch = () => {
   const router = useRouter();
 
   const handleLanguage = () => {
-    if (router.locale === 'en') router.push('/', '/ru', { locale: 'ru' });
-    if (router.locale === 'ru') router.push('/', '/', { locale: 'en' });
+    const currentPath = router.asPath;
+    const slicedPath = currentPath.slice(0, -3);
+    if (router.locale === 'en')
+      router.push(
+        '/ru',
+        currentPath.includes('/posts/') ? `${currentPath}-ru` : currentPath,
+        { locale: 'ru', scroll: true },
+      );
+    if (router.locale === 'ru')
+      router.push(
+        '/en',
+        currentPath.includes('/posts/') ? slicedPath : currentPath,
+        { locale: 'en', scroll: true },
+      );
   };
-
 
   return (
     <div className={cssPrefix}>
