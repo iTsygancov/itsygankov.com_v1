@@ -1,0 +1,30 @@
+@import 'styles/colors'
+@import 'styles/mixins'
+
+.langSwitch
+  display: flex
+  align-items: center
+  gap: .5rem
+  justify-content: center
+  width: 100%
+
+  &__menu
+    display: flex
+    align-items: center
+    gap: .25rem
+
+  &__button
+    @include body--semiBold
+    background: none
+    cursor: pointer
+    border: none
+    outline: none
+    color: $color--secondary
+    user-select: none
+
+    &:hover
+      text-decoration: underline
+
+    &:disabled
+      opacity: .25
+      pointer-events: none
