@@ -13,6 +13,7 @@ const cssPrefix = 'about';
 const About = () => {
   const router = useRouter();
   const currentLocale = router.locale === 'en' ? en : ru;
+
   return (
     <Container size="xl" className={cssPrefix}>
       <h1 className={`${cssPrefix}__title`}>{currentLocale.title}</h1>
