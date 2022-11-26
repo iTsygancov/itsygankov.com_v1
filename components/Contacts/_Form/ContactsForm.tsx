@@ -108,24 +108,28 @@ const ContactsForm = () => {
         opened={opened}
         className={`${cssPrefix}__modal`}
         onClose={() => setOpened(false)}
-        size='lg'
-        title={
-          <div className={`${cssPrefix}__modal-title`}>
-            <Image
-              className={`${cssPrefix}__modal-icon`}
-              src={success}
-              width={32}
-              height={32}
-              layout="fixed"
-              alt="Success icon"
-            />
-            <h3 className={`${cssPrefix}__modal-title`}>
-              {currentLocale.modal.title}
-            </h3>
-          </div>
-        }
+        size="xl"
       >
+        <div className={`${cssPrefix}__modal-title`}>
+          <Image
+            className={`${cssPrefix}__modal-icon`}
+            src={success}
+            width={64}
+            height={64}
+            layout="fixed"
+            alt="Success icon"
+          />
+          <h2 className={`${cssPrefix}__modal-title`}>
+            {currentLocale.modal.title}
+          </h2>
+        </div>
         <p className={`${cssPrefix}__modal-text`}>{currentLocale.modal.text}</p>
+        <button
+          className={`${cssPrefix}__modal-button`}
+          onClick={() => setOpened(false)}
+        >
+          Close
+        </button>
       </Modal>
     </>
   );

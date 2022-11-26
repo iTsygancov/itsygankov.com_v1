@@ -22,9 +22,26 @@
   &__modal
 
     &-title
-      display: grid
-      grid-auto-flow: column
-      gap: .5rem
+      display: flex
+      flex-direction: column
+      align-items: center
+      margin-top: 1rem
+      text-align: center
 
-    &-title
-      align-self: center
+    &-text
+      margin-bottom: 3rem
+      text-align: center
+
+    &-button
+      background: none
+      border: 1px solid $color--grey-2
+      border-radius: .5rem
+      margin: 0 auto
+      cursor: pointer
+      display: block
+      padding: .5rem 2rem
+
+      &:hover
+        background-color: $color--grey-3
+        transition: all 100ms ease-in-out
+
