@@ -16,9 +16,7 @@ const Contacts = () => {
   return (
     <Container size="xl">
       <div className={cssPrefix}>
-        <h1 className={`${cssPrefix}__title`}>
-          {currentLocale.title}
-        </h1>
+        <h1 className={`${cssPrefix}__title`}>{currentLocale.title}</h1>
         <Grid gutter="xl">
           <Grid.Col lg={4} md={5}>
             <div className={`${cssPrefix}__description`}>
@@ -30,32 +28,48 @@ const Contacts = () => {
               </p>
             </div>
             <div className={`${cssPrefix}__links`}>
-              <a
-                className={`${cssPrefix}__link`}
-                href="mailto:i.tsygancov@yandex.ru"
-                target='blank'
-              >
-                <Image
-                  className={`${cssPrefix}__link-icon`}
-                  src={message}
-                  layout="intrinsic"
-                  alt="Message icon"
-                />
-                i.tsygancov@yandex.ru
-              </a>
-              <a
-                className={`${cssPrefix}__link`}
-                href="https://t.me/I_Tsygankov"
-                target='blank'
-              >
-                <Image
-                  className={`${cssPrefix}__link-icon`}
-                  src={telegram}
-                  layout="intrinsic"
-                  alt="Telegram icon"
-                />
-                @I_Tsygankov
-              </a>
+              <div className={`${cssPrefix}__item`}>
+                <div className={`${cssPrefix}__item-icon`}>
+                  <Image
+                    src={message}
+                    layout='intrinsic'
+                    width={32}
+                    height={32}
+                    alt="Message icon"
+                  />
+                </div>
+                <div className={`${cssPrefix}__item-content`}>
+                  <span className={`${cssPrefix}__item-label`}>Email</span>
+                  <a
+                    className={`${cssPrefix}__item-link`}
+                    href="mailto:i.tsygancov@yandex.ru"
+                    target="blank"
+                  >
+                    i.tsygancov@yandex.ru
+                  </a>
+                </div>
+              </div>
+              <div className={`${cssPrefix}__item`}>
+                <div className={`${cssPrefix}__item-icon`}>
+                  <Image
+                    src={telegram}
+                    width={32}
+                    height={32}
+                    layout="intrinsic"
+                    alt="Telegram icon"
+                  />
+                </div>
+                <div className={`${cssPrefix}__item-content`}>
+                  <span className={`${cssPrefix}__item-label`}>Telegram</span>
+                  <a
+                    className={`${cssPrefix}__item-link`}
+                    href="https://t.me/I_Tsygankov"
+                    target="blank"
+                  >
+                  @I_Tsygankov
+                  </a>
+                </div>
+              </div>
             </div>
           </Grid.Col>
           <Grid.Col lg={8} md={7}>

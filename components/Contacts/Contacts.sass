@@ -1,11 +1,13 @@
 @import 'styles/colors'
+@import 'styles/mixins'
 
 .contacts
 
-  &__title
-
   &__description
-    margin-bottom: 3rem
+    margin-bottom: 2rem
+
+    &-title
+      margin-top: 0
 
     &-text
       color: $color--grey-1
@@ -16,24 +18,39 @@
     gap: 1rem
     margin-bottom: 2rem
 
-  &__link
+  &__item
     display: flex
-    align-items: center
     gap: 1rem
-    background-color: $color--grey-3
-    border: none
-    border-radius: .5rem
-    color: $color--secondary
-    padding: .5rem 1rem
-    text-decoration: none
-    transition: all 100ms ease-in-out
+    margin-bottom: 1rem
 
     @media screen and (min-width: 767.97px)
       max-width: 320px
 
-    &:hover
-      background-color: #E7EAED
-      transition: all 100ms ease-in-out
-
     &-icon
-      display: block
+      padding: 0.5rem
+      background-color: $color--grey-3
+      border-radius: .5rem
+      display: flex
+      align-items: center
+      justify-content: center
+      user-select: none
+
+    &-content
+      display: flex
+      flex-direction: column
+
+    &-label
+      @include subhead--semiBold
+      font-size: .75rem
+      opacity: .5
+      text-decoration: none
+      user-select: none
+
+    &-link
+      color: $color--secondary
+      text-decoration: none
+      transition: all 100ms ease-in-out
+    
+      &:hover
+        text-decoration: underline
+
