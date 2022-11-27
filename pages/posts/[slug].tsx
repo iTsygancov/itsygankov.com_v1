@@ -7,6 +7,7 @@ import Head from 'next/head';
 import { MDXRemote } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 import path from 'path';
+import rehypeHighlight from 'rehype-highlight';
 
 import Post from '../../components/Post/Post';
 import { IFrontMatter } from '../../types';
@@ -25,7 +26,7 @@ type PostPageProps = {
 
 export default function PostPage({ source, frontMatter }: PostPageProps) {
   const components = {
-    CodeHighlighter: dynamic(() => import('../../components/CodeHighlighter/CodeHighlighter'), { ssr: false }),
+    PostFrames: dynamic(() => import('../../components/Post/_Frames/PostFrames'), { ssr: false }),
     Head,
   };
 
@@ -48,7 +49,10 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   const { content, data } = matter(source);
 
-  const mdxSource = await serialize(content, { scope: data });
+  const mdxSource = await serialize(content, {
+    scope: data,
+    mdxOptions: { rehypePlugins: [rehypeHighlight] },
+  });
 
   return {
     props: {
