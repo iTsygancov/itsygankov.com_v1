@@ -1,7 +1,5 @@
-import { Container } from '@mantine/core';
 import fs from 'fs';
 import matter from 'gray-matter';
-import Link from 'next/link';
 import path from 'path';
 
 import Posts from '../../components/Posts/Posts';
