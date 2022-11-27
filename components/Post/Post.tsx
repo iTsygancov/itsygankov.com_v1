@@ -1,7 +1,9 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { ReactNode } from 'react';
 
 import { IFrontMatter } from '../../types';
+import { en, ru } from './Post.locale';
 
 
 type PostProps = {
@@ -13,12 +15,16 @@ const cssPrefix = 'post';
 
 const Post = ({ children, frontMatter }: PostProps) => {
   const { title, category, date } = frontMatter;
+  const router = useRouter();
+  const currentLocale = router.locale === 'en' ? en : ru;
 
   return (
     <div className={cssPrefix}>
       <div className={`${cssPrefix}__header`}>
+        <p className={`${cssPrefix}__date`}>{date}</p>
         <h1 className={`${cssPrefix}__title`}>{title}</h1>
         <div className={`${cssPrefix}__description`}>
+          <span className={`${cssPrefix}__description-title`}>{currentLocale.category}</span>
           <Link
             href={{
               pathname: '/posts',
@@ -28,8 +34,6 @@ const Post = ({ children, frontMatter }: PostProps) => {
           >
             <a className={`${cssPrefix}__category`}>{category}</a>
           </Link>
-          <span className={`${cssPrefix}__separator`}>&#x2022;</span>
-          <p className={`${cssPrefix}__date`}>{date}</p>
         </div>
       </div>
       <main>{children}</main>
