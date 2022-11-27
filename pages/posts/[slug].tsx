@@ -33,11 +33,13 @@ export default function PostPage({ source, frontMatter }: PostPageProps) {
   return (
     <Container size='xl'>
       <Grid>
+        <Grid.Col md={2}/>
         <Grid.Col md={8}>
           <Post frontMatter={frontMatter}>
             <MDXRemote {...source} components={components} />
           </Post>
         </Grid.Col>
+        <Grid.Col md={2}/>
       </Grid>
     </Container>
   );
