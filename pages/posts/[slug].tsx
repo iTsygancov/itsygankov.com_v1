@@ -23,11 +23,12 @@ type PostPageProps = {
   }
 }
 
-
 export default function PostPage({ source, frontMatter }: PostPageProps) {
   const components = {
     PostFrames: dynamic(() => import('../../components/Post/_Frames/PostFrames'), { ssr: false }),
+    PostCodeHeader: dynamic(() => import('../../components/Post/_CodeHeader/PostCodeHeader'), { ssr: false }),
     Head,
+    p: ({ children }: any) => <p className='post__text'>{children}</p>,
   };
 
   return (
