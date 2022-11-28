@@ -1,4 +1,5 @@
 import { Group } from '@mantine/core';
+import { useOs } from '@mantine/hooks';
 import { openSpotlight } from '@mantine/spotlight';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
@@ -7,17 +8,24 @@ import IconSearch from '../Icon/_Search/IconSearch';
 import { en, ru } from './Spotlight.locale';
 
 
+type IOs = '⌘' | 'Ctrl' | undefined;
+
 const cssPrefix = 'spotlight';
 
 const Spotlight = () => {
   const router = useRouter();
   const currentLocale = router.locale === 'en' ? en : ru;
-  const [modKey, setModKey] = useState('⌘');
+  const [modKey, setModKey] = useState<IOs>();
+  const os = useOs();
 
   useEffect(() => {
-    const isMac = navigator.platform.toUpperCase().indexOf('MAC')>=0;
-    if (!isMac) setModKey('Ctrl');
-  }, []);
+    const isMac = os === 'macos';
+    if (isMac) {
+      setModKey('⌘');
+    } else {
+      setModKey('Ctrl');
+    }
+  }, [os]);
 
   return (
     <div className={cssPrefix}>
