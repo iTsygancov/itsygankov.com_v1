@@ -18,8 +18,8 @@ const PostCard = ({ post }: PostCardProps) => {
       <div className={`${cssPrefix}__header`}>
         <span className={`${cssPrefix}__date`}>{date}</span>
         <Link
-          as={`/posts/${post.filePath.replace(/\.mdx?$/, '')}`}
-          href={'/posts/[slug]'}
+          as={`/blog/${post.filePath.replace(/\.mdx?$/, '')}`}
+          href={'/blog/[slug]'}
         >
           <h3 className={`${cssPrefix}__title`}>
             <a>{title}</a>
@@ -27,7 +27,7 @@ const PostCard = ({ post }: PostCardProps) => {
         </Link>
       </div>
       <Link
-        href={{ pathname: '/posts', query: { category } }} 
+        href={{ pathname: '/blog', query: { category } }} 
         key={category}
       >
         <a className={`${cssPrefix}__category`} > {category} </a>

@@ -15,13 +15,13 @@ const LangSwitch = () => {
     if (router.locale === 'en')
       router.push(
         '/ru',
-        currentPath.includes('/posts/') ? `${currentPath}-ru` : currentPath,
+        currentPath.includes('/blog/') ? `${currentPath}-ru` : currentPath,
         { locale: 'ru', scroll: true },
       );
     if (router.locale === 'ru')
       router.push(
         '/en',
-        currentPath.includes('/posts/') ? slicedPath : currentPath,
+        currentPath.includes('/blog/') ? slicedPath : currentPath,
         { locale: 'en', scroll: true },
       );
   };

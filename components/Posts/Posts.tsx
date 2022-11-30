@@ -56,8 +56,8 @@ const Posts = ({ posts }: PostsProps) => {
                 (post) =>
                   post.data.category === query.category && (
                     <Link
-                      as={`/posts/${post.filePath.replace(/\.mdx?$/, '')}`}
-                      href={'/posts/[slug]'}
+                      as={`/blog/${post.filePath.replace(/\.mdx?$/, '')}`}
+                      href={'/blog/[slug]'}
                       key={post.data.id}
                     >
                       <a className={`${cssPrefix}__link`}>
@@ -69,8 +69,8 @@ const Posts = ({ posts }: PostsProps) => {
               : router.locale === 'en' &&
                 enPosts.map((post) => (
                   <Link
-                    as={`/posts/${post.filePath.replace(/\.mdx?$/, '')}`}
-                    href={'/posts/[slug]'}
+                    as={`/blog/${post.filePath.replace(/\.mdx?$/, '')}`}
+                    href={'/blog/[slug]'}
                     key={post.data.id}
                   >
                     <a className={`${cssPrefix}__link`}>{post.data.title}</a>
@@ -82,8 +82,8 @@ const Posts = ({ posts }: PostsProps) => {
                 (post) =>
                   post.data.category === query.category && (
                     <Link
-                      as={`/posts/${post.filePath.replace(/\.mdx?$/, '')}`}
-                      href={'/posts/[slug]'}
+                      as={`/blog/${post.filePath.replace(/\.mdx?$/, '')}`}
+                      href={'/blog/[slug]'}
                       key={post.data.id}
                     >
                       <a className={`${cssPrefix}__link`}>
@@ -95,8 +95,8 @@ const Posts = ({ posts }: PostsProps) => {
               : router.locale === 'ru' &&
                 ruPosts.map((post) => (
                   <Link
-                    as={`/posts/${post.filePath.replace(/\.mdx?$/, '')}`}
-                    href={'/posts/[slug]'}
+                    as={`/blog/${post.filePath.replace(/\.mdx?$/, '')}`}
+                    href={'/blog/[slug]'}
                     key={post.data.id}
                   >
                     <a className={`${cssPrefix}__link`}>{post.data.title}</a>

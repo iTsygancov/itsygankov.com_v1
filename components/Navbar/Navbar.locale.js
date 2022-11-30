@@ -1,11 +1,11 @@
 const en = {
-  posts: 'Posts',
+  blog: 'Blog',
   aboutMe: 'About me',
   contacts: 'Contacts',
 };
 
 const ru = {
-  posts: 'Статьи',
+  blog: 'Блог',
   aboutMe: 'Обо мне',
   contacts: 'Контакты',
 };

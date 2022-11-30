@@ -1,4 +1,4 @@
-const en = { title: 'Posts' };
+const en = { title: 'Blog' };
 
 const ru = { title: 'Статьи' };
 

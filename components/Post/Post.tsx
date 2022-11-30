@@ -27,7 +27,7 @@ const Post = ({ children, frontMatter }: PostProps) => {
           <span className={`${cssPrefix}__description-title`}>{currentLocale.category}</span>
           <Link
             href={{
-              pathname: '/posts',
+              pathname: '/blog',
               query: { category: category },
             }}
             key={category}

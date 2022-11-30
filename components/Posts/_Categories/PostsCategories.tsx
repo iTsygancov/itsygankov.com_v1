@@ -21,7 +21,7 @@ const PostsCategories = ({ categories }: PostsCategoriesProps) => {
         {categories.map((category) => (
           <Link
             href={{
-              pathname: '/posts',
+              pathname: '/blog',
               query: { category: category },
             }}
             key={category}

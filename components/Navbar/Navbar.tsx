@@ -15,7 +15,7 @@ const Navbar = ({ style, handleClick }: NavbarProps) => {
   const router = useRouter();
   const currentLocale = router.locale === 'en' ? en : ru;
   const links = [
-    { text: currentLocale.posts, link: '/posts' },
+    { text: currentLocale.blog, link: '/blog' },
     { text: currentLocale.aboutMe, link: '/about' },
     { text: currentLocale.contacts, link: '/contacts' },
   ];
