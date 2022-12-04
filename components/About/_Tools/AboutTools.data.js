@@ -7,6 +7,7 @@ export const data = [
   'npm',
   'Webpack',
   'Storybook',
+  'Figma',
   'Adobe Photoshop',
   'JetBrains',
   'Jira',

@@ -1,7 +1,6 @@
-import { SimpleGrid } from '@mantine/core';
+import { Badge } from '@mantine/core';
 import { useRouter } from 'next/router';
 
-import ProgressBar from '../../ProgressBar/Progressbar';
 import { data } from './AbouSkills.data';
 import { en, ru } from './AboutSkills.locale';
 
@@ -15,22 +14,11 @@ const AboutSkills = () => {
   return (
     <div className={cssPrefix}>
       <h2 className={`${cssPrefix}__title`}>{currentLocale.title}</h2>
-      <SimpleGrid
-        cols={2}
-        breakpoints={[
-          { maxWidth: 'md', cols: 2, spacing: 'md' },
-          { maxWidth: 'sm', cols: 1, spacing: 'sm' },
-        ]}
-      >
-        {data.map(({ title, label, value }) => (
-          <ProgressBar
-            title={title}
-            label={label}
-            value={value}
-            key={title}
-          />
-        ))}
-      </SimpleGrid>
+      {data.map((item: string) => (
+        <Badge className={`${cssPrefix}__badge`} key={item}>
+          {item}
+        </Badge>
+      ))}
     </div>
   );
 };
