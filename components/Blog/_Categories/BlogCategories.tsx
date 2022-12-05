@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-import { en, ru } from './PostsCategories.locale';
+import { en, ru } from './BlogCategories.locale';
 
 
 type PostsCategoriesProps = {

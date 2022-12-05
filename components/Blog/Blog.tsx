@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import { IPost } from '../../types';
-import PostsCategories from './_Categories/PostsCategories';
-import { en, ru } from './Posts.locale';
+import PostsCategories from './_Categories/BlogCategories';
+import { en, ru } from './Blog.locale';
 
 
 interface PostsProps {

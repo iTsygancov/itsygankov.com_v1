@@ -2,7 +2,7 @@ import fs from 'fs';
 import matter from 'gray-matter';
 import path from 'path';
 
-import Posts from '../../components/Posts/Posts';
+import Posts from '../../components/Blog/Blog';
 import { IPost } from '../../types';
 import { postFilePaths, POSTS_PATH } from '../../utils/mdxUtils';
 
