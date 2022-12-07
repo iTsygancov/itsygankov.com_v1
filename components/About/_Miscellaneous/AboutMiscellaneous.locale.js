@@ -1,11 +1,13 @@
 const en = {
   title: 'Miscellaneous',
-  link: 'Resume',
+  linkTitle: 'Resume',
+  src: '/docs/resume.pdf',
 };
 
 const ru = {
   title: 'Разное',
-  link: 'Резюме',
+  linkTitle: 'Резюме',
+  src: '/docs/resume-ru.pdf',
 };
 
 export { en, ru };

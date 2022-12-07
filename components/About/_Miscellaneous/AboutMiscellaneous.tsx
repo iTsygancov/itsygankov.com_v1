@@ -15,7 +15,7 @@ const AboutMiscellaneous = () => {
   return (
     <div className={cssPrefix}>
       <h2 className={`${cssPrefix}__title`}>{currentLocale.title}</h2>
-      <Link href="/docs/resume.pdf" >
+      <Link href={currentLocale.src} locale={false}>
         <a className={`${cssPrefix}__link`} target="_blank">
           <Image
             className={`${cssPrefix}__link-icon`}
@@ -23,7 +23,7 @@ const AboutMiscellaneous = () => {
             layout="intrinsic"
             alt="Download icon"
           />
-          {currentLocale.link}
+          {currentLocale.linkTitle}
         </a>
       </Link>
       <hr />
