@@ -128,7 +128,7 @@ const ContactsForm = () => {
           className={`${cssPrefix}__modal-button`}
           onClick={() => setOpened(false)}
         >
-          Close
+          {currentLocale.modal.button}
         </button>
       </Modal>
     </>
