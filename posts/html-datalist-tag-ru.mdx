@@ -1,0 +1,63 @@
+---
+id: "11"
+title: HTML тег <datalist>
+section: latest
+date: 7 декабря, 2022
+category: HTML
+---
+
+В этой статье мы разберем тэг `datalist`, создающий список предварительных
+вариантов, которые могут быть использованы при наборе в текстовом поле.
+Изначально этот список скрыт и недоступен пользователю. Он становится доступным
+при получении полем фокуса или при наборе текста.
+
+Давайте посмотрим, как им пользоваться на примере:
+
+```html
+<label for="car">
+  <input list="cars" name="cars" id="car" /> is my favorite car brand!
+</label>
+
+<datalist id="cars">
+  <option value="BMW"></option>
+  <option value="Mercedes"></option>
+  <option value="Volvo"></option>
+  <option value="Bentley"></option>
+</datalist>
+```
+Итак, для того, чтобы использовать `datalist`, мы должны создать тэг `input`
+и добавить ему атрибут `list=""`, значение которого должно быть таким же,
+как и `id` тэга `datalist`.
+
+Это создаст поле ввода с функцией автозаполнения.
+
+Рабочий пример вы можете увидеть в действии на этом Codepen:
+
+<PostFrames>
+  <iframe
+    height="300"
+    style={{ width: "100%" }}
+    scrolling="no"
+    title="HTML Datalist tag"
+    src="https://codepen.io/iTsygankov/embed/BaVVGOb?default-tab=html%2Cresult"
+    frameBorder="no"
+    loading="lazy"
+    allowFullScreen={true}
+  >
+    See the Pen
+    <a href="https://codepen.io/iTsygankov/pen/BaVVGOb">HTML Datalist tag</a>
+    by Igor (<a href="https://codepen.io/iTsygankov">@iTsygankov</a>) on
+    <a href="https://codepen.io">CodePen</a>.
+  </iframe>
+</PostFrames>
+
+## Недостатки datalist
+
+Основным и главным недостатком является то, что пользователь может вводить в
+поле все, что захочет, и мы не сможем его остановить. Для того, чтобы сказать
+пользователю, что введенный им вариант не найден, нам необходимо использовать
+JavaScript.
+
+## Поддержка браузерами
+
+Всю информацию о поддержке вы сможете найти <a href="https://caniuse.com/datalist" target="_blank">тут</a>

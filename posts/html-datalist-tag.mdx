@@ -1,0 +1,60 @@
+---
+id: "10"
+title: HTML tag <datalist>
+section: latest
+date: December 7, 2022
+category: HTML
+---
+
+In this article we will take a look at the `datalist` tag, which defines a list of pre-defined options that can be used when typing in a `input` field. Initially this list is hidden and becomes available when the field gets focus or when typing.
+
+This intends it might be utilized as an autocomplete for `input` fields.
+
+Let's look at an example of how to use it:
+
+```html
+<label for="car">
+  <input list="cars" name="cars" id="car" /> is my favorite car brand!
+</label>
+
+<datalist id="cars">
+  <option value="BMW"></option>
+  <option value="Mercedes"></option>
+  <option value="Volvo"></option>
+  <option value="Bentley"></option>
+</datalist>
+```
+
+We have to define `list=""` on our `input`, and then we might define a `datalist` with similar `id` as the `list`.
+
+This will create an `input` with autocomplete functionality.
+
+You can see a working example in action on this Codepen:
+
+<PostFrames>
+  <iframe
+    height="300"
+    style={{ width: "100%" }}
+    scrolling="no"
+    title="HTML Datalist tag"
+    src="https://codepen.io/iTsygankov/embed/BaVVGOb?default-tab=html%2Cresult"
+    frameBorder="no"
+    loading="lazy"
+    allowFullScreen={true}
+  >
+    See the Pen
+    <a href="https://codepen.io/iTsygankov/pen/BaVVGOb">HTML Datalist tag</a>
+    by Igor (<a href="https://codepen.io/iTsygankov">@iTsygankov</a>) on
+    <a href="https://codepen.io">CodePen</a>.
+  </iframe>
+</PostFrames>
+
+## Datalist downsides
+
+The main and major disadvantage is that the user
+can enter whatever he wants into the field and we can't
+stop him unless we intervene with JavaScript.
+
+## Browser support
+
+You can find Datalist support info <a href="https://caniuse.com/datalist" target="_blank">here</a>
