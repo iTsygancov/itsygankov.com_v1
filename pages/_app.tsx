@@ -52,6 +52,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           href="/assets/favicon-16x16.png"
         />
         <link rel="manifest" href="/public/site.webmanifest" />
+        <title>{'< iTsygancov />'}</title>
       </Head>
       <Layout>
         <Component {...pageProps} />
