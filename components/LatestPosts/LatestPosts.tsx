@@ -21,9 +21,9 @@ const LatestPosts = ({ posts }: LatestPostsProps) => {
     <div className={cssPrefix}>
       <Container size="xl">
         <div className={`${cssPrefix}__header`}>
-          <h2 className={`${cssPrefix}__title`}>Latest posts</h2>
-          <Link href="posts/">
-            <a className={`${cssPrefix}__link`}>View all</a>
+          <h2 className={`${cssPrefix}__title`}>{currentLocale.title}</h2>
+          <Link href="blog/">
+            <a className={`${cssPrefix}__link`}>{currentLocale.link}</a>
           </Link>
         </div>
         <PostList posts={posts} />

@@ -4,8 +4,8 @@ const en = {
 };
 
 const ru = {
-  title: 'Популярное',
-  link: 'Последние статьи',
+  title: 'Последние статьи',
+  link: 'Все',
 };
 
 export { en, ru };
