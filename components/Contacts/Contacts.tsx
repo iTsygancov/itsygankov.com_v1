@@ -42,10 +42,10 @@ const Contacts = () => {
                   <span className={`${cssPrefix}__item-label`}>Email</span>
                   <a
                     className={`${cssPrefix}__item-link`}
-                    href="mailto:i.tsygancov@yandex.ru"
+                    href="mailto:info@itsygankov.com"
                     target="blank"
                   >
-                    i.tsygancov@yandex.ru
+                  info@itsygankov.com
                   </a>
                 </div>
               </div>
