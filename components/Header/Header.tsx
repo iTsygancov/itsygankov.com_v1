@@ -25,7 +25,7 @@ function Header() {
     getSpotlightActions(router).then((actions) => {
       setActions(actions);
     });
-  }, []);
+  }, [router]);
 
   return (
     <header className={cssPrefix}>
