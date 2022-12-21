@@ -1,0 +1,96 @@
+---
+id: "30"
+title: CSS Scroll Snap
+section: latest
+date: December 21, 2022
+category: CSS
+---
+
+CSS Scroll Snap is a powerful tool for creating smooth, visually appealing scrolling experiences on the web. It allows developers to specify which elements on a page should snap to the viewport as the user scrolls, creating a guided, intuitive scrolling experience for the user.
+
+To use CSS Scroll Snap, you'll need to apply the `scroll-snap-type` property to a container element, and the `scroll-snap-align` property to its child elements. The `scroll-snap-type` property determines the snapping behavior of the container, while the `scroll-snap-align` property determines the alignment of the child elements within the container.
+
+Here is an example of how you might use CSS Scroll Snap to create a vertically scrolling container with snapping behavior:
+
+First, add the following markup to the body of the `index.html` file: 
+
+<PostCodeHeader>
+index.html
+</PostCodeHeader>
+```html
+<div class="container">
+  <div class="item"></div>
+  <div class="item"></div>
+  <div class="item"></div>
+</div>
+```
+
+Next, create `style.css` and insert the following code into it:
+
+<PostCodeHeader>
+style.css
+</PostCodeHeader>
+```css
+.container {
+  width: 500px;
+  height: 200px;
+  margin: 0 auto;
+  overflow: scroll;
+  scroll-snap-type: y mandatory;
+}
+
+.item {
+  width: 480px;
+  height: 180px;
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+}
+
+.item:nth-child(1) {
+  background: red;
+}
+
+.item:nth-child(2) {
+  background: blue;
+}
+
+.item:nth-child(3) {
+  background: green;
+}
+```
+
+You can see a working example in action on this Codepen:
+
+<PostFrames>
+  <iframe
+    height="300"
+    style={{ width: "100%" }}
+    scrolling="no"
+    title="CSS Scroll Snap"
+    src="https://codepen.io/iTsygankov/embed/dyjPMOm?default-tab=html%2Cresult"
+    frameborder="no"
+    loading="lazy"
+    allowfullscreen={true}
+  >
+    See the Pen
+    <a href="https://codepen.io/iTsygankov/pen/dyjPMOm">CSS Scroll Snap</a>
+    by Igor (<a href="https://codepen.io/iTsygankov">@iTsygankov</a>) on
+    <a href="https://codepen.io">CodePen</a>.
+  </iframe>
+</PostFrames>
+
+In this example, the `.container` element is set to display as a flex container and has its `scroll-snap-type` property set to `y mandatory`. This tells the browser to snap the container to its child elements along the y-axis (vertical axis) whenever the user scrolls. The `.item` elements within the container have their `scroll-snap-align` property set to `start`, which aligns them to the start edge of the container when they are snapped into view.
+
+There are many other options and variations that you can use with CSS Scroll Snap to fine-tune the snapping behavior of your elements. For example, you can use the `scroll-snap-type` property to specify the size of the snap points, or to control the axis along which the snapping occurs. You can also use different values for the `scroll-snap-align` property to control the position of the snapped elements within the container.
+
+One important thing to note is that CSS Scroll Snap is not supported in all browsers, so you'll need to make sure to test your implementation and provide fallbacks as needed. You can use the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@supports#try_it" target="_blank">`@supports`</a> feature query to check for browser support, or you can use a polyfill to add support for older browsers.
+
+In addition to its basic snapping behavior, CSS Scroll Snap also provides a number of advanced features that can be used to create more complex scrolling experiences. For example, you can use the `scroll-padding` property to add a buffer around the snapped elements, or the `scroll-snap-stop` property to prevent the user from scrolling past certain points in the container.
+
+You can also use the `scroll-snap-coordinate` property to specify specific coordinates within the container where the snapping should occur, rather than relying on the default snap points. This can be useful for creating more fine-grained control over the snapping behavior of your elements.
+
+CSS Scroll Snap can be a particularly useful tool for creating carousels and other types of image galleries, where you want the user to be able to scroll through a series of images or other content in a smooth, intuitive way. By using the `scroll-snap-type` and `scroll-snap-align` properties, you can create a carousel that snaps to each image as the user scrolls, creating a more seamless, visually appealing experience for the user.
+
+## Заключение
+
+CSS Scroll Snap is a valuable tool for creating engaging, user-friendly scrolling experiences on the web. It's easy to use and offers a wide range of customization options, making it a great choice for developers looking to add some extra polish to their web projects. Whether you're creating a simple scrolling container or a more complex functionality.
