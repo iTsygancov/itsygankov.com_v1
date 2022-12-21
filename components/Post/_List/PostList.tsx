@@ -11,11 +11,13 @@ type PostListProps = {
 const cssPrefix = 'postList';
 
 const PostList = ({ posts }: PostListProps) => {
+  const sortedPosts = posts.sort((a, b) => (a.data.id < b.data.id ? 1 : -1));
+
   return (
     <div className={cssPrefix}>
       <Grid>
         {
-          posts.map((post) => (
+          sortedPosts.map((post) => (
             <Grid.Col
               sm={6}
               md={4}
