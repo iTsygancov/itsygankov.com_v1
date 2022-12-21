@@ -1,5 +1,5 @@
 const en = { title: 'Blog' };
 
-const ru = { title: 'Статьи' };
+const ru = { title: 'Блог' };
 
 export { en, ru };
