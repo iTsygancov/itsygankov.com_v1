@@ -1,6 +1,8 @@
 import '../styles/main.sass';
 
 import { MantineProvider } from '@mantine/core';
+// eslint-disable-next-line import/no-unresolved
+import { Analytics } from '@vercel/analytics/react';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 
@@ -56,6 +58,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <Layout>
         <Component {...pageProps} />
+        <Analytics />
       </Layout>
     </MantineProvider>
   );
