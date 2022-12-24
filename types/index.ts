@@ -3,6 +3,7 @@ export type IFrontMatter = {
   date: string,
   description: string,
   id: string,
+  keywords: string[]
   section: string,
   title: string
 }
