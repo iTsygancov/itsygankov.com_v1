@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -16,6 +17,9 @@ const PostsCategories = ({ categories }: PostsCategoriesProps) => {
   const query = router.query;
   return (
     <div className={cssPrefix}>
+      <Head>
+        {query.category && <title>{query.category + ' | < iTsygankov />'}</title>}
+      </Head>
       <h3 className={`${cssPrefix}__title`}>{currentLocale.title}</h3>
       <div className={`${cssPrefix}__list`}>
         {categories.map((category) => (
