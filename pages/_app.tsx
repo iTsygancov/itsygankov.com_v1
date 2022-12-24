@@ -55,6 +55,8 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
         <link rel="manifest" href="/public/site.webmanifest" />
         <title>{'< iTsygankov />'}</title>
+        <meta property="og:title" content='< iTsygankov />' />
+        <meta name="author" content="Igor Tsygankov" />
       </Head>
       <Layout>
         <Component {...pageProps} />

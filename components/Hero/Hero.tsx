@@ -1,4 +1,5 @@
 import { Container } from '@mantine/core';
+import Head from 'next/head';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
@@ -13,28 +14,38 @@ const Hero = () => {
   const router = useRouter();
   const currentLocale = router.locale === 'en' ? en : ru;
   return (
-    <Container size='xl'>
-      <div className="hero">
-        <div className={`${cssPrefix}__content`}>
-          <h1 className={`${cssPrefix}__title`}>
-            {currentLocale.title}
-          </h1>
-          <p className={`${cssPrefix}__subtitle`}>
-            {currentLocale.subtitle}
-          </p>
-          <p className={`${cssPrefix}__subtitle`}>
-            {currentLocale.description}
-          </p>
+    <>
+      <Head>
+        <meta
+          name="description"
+          content={currentLocale.description}
+        />
+        <meta property="og:description" content={currentLocale.description} />
+      </Head>
+      <Container size='xl'>
+        <div className="hero">
+          <div className={`${cssPrefix}__content`}>
+            <h1 className={`${cssPrefix}__title`}>
+              {currentLocale.title}
+            </h1>
+            <p className={`${cssPrefix}__subtitle`}>
+              {currentLocale.subtitle}
+            </p>
+            <p className={`${cssPrefix}__subtitle`}>
+              {currentLocale.description}
+            </p>
+          </div>
+          <div className={`${cssPrefix}__image`}>
+            <Image
+              src={hero}
+              layout='intrinsic'
+              alt='Hero image'
+            />
+          </div>
         </div>
-        <div className={`${cssPrefix}__image`}>
-          <Image
-            src={hero}
-            layout='intrinsic'
-            alt='Hero image'
-          />
-        </div>
-      </div>
-    </Container>
+      </Container>
+
+    </>
   );
 };
 
