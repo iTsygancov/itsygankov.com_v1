@@ -6,6 +6,10 @@ const en = {
   ],
   outro: 'Do you want to chat? You can always ',
   link: 'contact me',
+  meta: {
+    title: 'About me | < iTsygankov />',
+    description: 'Igor Tsygankov is a software engineer who specializes in building and designing exceptional digital experiences.',
+  },
 };
 
 const ru = {
@@ -16,6 +20,10 @@ const ru = {
   ],
   outro: 'Хотите пообщаться? Вы всегда можете ',
   link: 'связаться со мной',
+  meta: {
+    title: 'Обо мне | < iTsygankov />',
+    description: 'Игорь Цыганков - инженер-программист, специализирующийся на создании и проектировании исключительного цифрового опыта.',
+  },
 };
 
 export { en, ru };

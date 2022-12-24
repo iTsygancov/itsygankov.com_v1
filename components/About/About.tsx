@@ -1,4 +1,5 @@
 import { Container } from '@mantine/core';
+import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -15,20 +16,31 @@ const About = () => {
   const currentLocale = router.locale === 'en' ? en : ru;
 
   return (
-    <Container size="xl" className={cssPrefix}>
-      <h1 className={`${cssPrefix}__title`}>{currentLocale.title}</h1>
-      <div className={`${cssPrefix}__description`}>
-        {currentLocale.descriptionText.map((text) => (
-          <p className={`${cssPrefix}__description-text`} key={text}>
-            {text}
-          </p>
-        ))}
-      </div>
-      <AboutSkills />
-      <AboutTools />
-      <AboutMiscellaneous />
-      <p className={`${cssPrefix}__outro`}>{currentLocale.outro}<Link href='/contacts'><a>{currentLocale.link}</a></Link></p>
-    </Container>
+    <>
+      <Head>
+        <title>{currentLocale.meta.title}</title>
+        <meta
+          name="description"
+          content={currentLocale.meta.description}
+        />
+        <meta property="og:title" content={currentLocale.meta.title} />
+        <meta property="og:description" content={currentLocale.meta.description} />
+      </Head>
+      <Container size="xl" className={cssPrefix}>
+        <h1 className={`${cssPrefix}__title`}>{currentLocale.title}</h1>
+        <div className={`${cssPrefix}__description`}>
+          {currentLocale.descriptionText.map((text) => (
+            <p className={`${cssPrefix}__description-text`} key={text}>
+              {text}
+            </p>
+          ))}
+        </div>
+        <AboutSkills />
+        <AboutTools />
+        <AboutMiscellaneous />
+        <p className={`${cssPrefix}__outro`}>{currentLocale.outro}<Link href='/contacts'><a>{currentLocale.link}</a></Link></p>
+      </Container>
+    </>
   );
 };
 
