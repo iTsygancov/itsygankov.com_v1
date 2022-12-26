@@ -9,6 +9,7 @@ import { serialize } from 'next-mdx-remote/serialize';
 import path from 'path';
 import rehypeHighlight from 'rehype-highlight';
 
+import PostPreTag from '../../components/Post/_PreTag/PostPreTag';
 import Post from '../../components/Post/Post';
 import { IFrontMatter } from '../../types';
 import { postFilePaths, POSTS_PATH } from '../../utils/mdxUtils';
@@ -35,6 +36,7 @@ export default function PostPage({ source, frontMatter }: PostPageProps) {
     ),
     Head,
     p: ({ children }: any) => <p className="post__text">{children}</p>,
+    pre: ({ children }: any) => <PostPreTag>{children}</PostPreTag>,
   };
 
   const {

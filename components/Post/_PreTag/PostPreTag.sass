@@ -1,0 +1,27 @@
+@import 'styles/colors'
+
+.postPreTag
+  position: relative
+  
+  &__button
+    position: absolute
+    right: 1rem
+    top: -1.5rem
+    border: 1px solid $color--grey-2
+    border-radius: .25rem
+    width: 2rem
+    height: 2rem
+    display: flex
+    align-items: center
+    justify-content: center
+    background-color: $color--grey-3
+    cursor: pointer
+
+    &:hover
+      background-color: #f6f6f6
+
+    &:active
+      background-color: #f3f3f3
+
+    &--success
+      border-color: $color--success
