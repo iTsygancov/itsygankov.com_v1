@@ -37,6 +37,7 @@ export default function PostPage({ source, frontMatter }: PostPageProps) {
     Head,
     p: ({ children }: any) => <p className="post__text">{children}</p>,
     pre: ({ children }: any) => <PostPreTag>{children}</PostPreTag>,
+    li: ({ children }: any) => <li className="post__listItem">{children}</li>,
   };
 
   const {
