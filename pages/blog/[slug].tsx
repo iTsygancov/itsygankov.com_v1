@@ -10,10 +10,10 @@ import path from 'path';
 import rehypeHighlight from 'rehype-highlight';
 
 import PostPreTag from '../../components/Post/_PreTag/PostPreTag';
+import PostSubtitle from '../../components/Post/_Subtitle/PostSubtitle';
 import Post from '../../components/Post/Post';
 import { IFrontMatter } from '../../types';
 import { postFilePaths, POSTS_PATH } from '../../utils/mdxUtils';
-import PostSubtitle from '../../components/Post/_Subtitle/PostSubtitle';
 
 
 type PostPageProps = {
