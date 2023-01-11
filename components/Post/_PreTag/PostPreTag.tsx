@@ -5,23 +5,17 @@ import iconCopy from '../../../public/assets/icon-copy.svg';
 import iconCopySuccess from '../../../public/assets/icon-copy--success.svg';
 
 
-type PreProps = {
+type PostPreTagProps = {
   children: any;
 };
 
 const cssPrefix = 'postPreTag';
 
-const PostPreTag = ({ children }: PreProps) => {
+const PostPreTag = ({ children }: PostPreTagProps) => {
   const textInput = useRef<any>(null);
-  // const [hovered, setHovered] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  // const onEnter = () => {
-  //   setHovered(true);
-  // };
-
   const onExit = () => {
-    // setHovered(false);
     setCopied(false);
   };
 
@@ -36,7 +30,6 @@ const PostPreTag = ({ children }: PreProps) => {
   return (
     <div
       ref={textInput}
-      // onMouseEnter={onEnter}
       onMouseLeave={onExit}
       className={cssPrefix}
     >
