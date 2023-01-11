@@ -13,15 +13,15 @@ const cssPrefix = 'postPreTag';
 
 const PostPreTag = ({ children }: PreProps) => {
   const textInput = useRef<any>(null);
-  const [hovered, setHovered] = useState(false);
+  // const [hovered, setHovered] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  const onEnter = () => {
-    setHovered(true);
-  };
+  // const onEnter = () => {
+  //   setHovered(true);
+  // };
 
   const onExit = () => {
-    setHovered(false);
+    // setHovered(false);
     setCopied(false);
   };
 
@@ -36,26 +36,24 @@ const PostPreTag = ({ children }: PreProps) => {
   return (
     <div
       ref={textInput}
-      onMouseEnter={onEnter}
+      // onMouseEnter={onEnter}
       onMouseLeave={onExit}
       className={cssPrefix}
     >
-      {hovered && (
-        <button
-          className={
-            `${cssPrefix}__button` +
-            (copied ? ` ${cssPrefix}__button--success` : '')
-          }
-          onClick={onCopy}
-        >
-          <Image
-            className={`${cssPrefix}__button-icon`}
-            src={copied ? iconCopySuccess : iconCopy}
-            layout="intrinsic"
-            alt="Successfully copied icon"
-          />
-        </button>
-      )}
+      <button
+        className={
+          `${cssPrefix}__button` +
+          (copied ? ` ${cssPrefix}__button--success` : '')
+        }
+        onClick={onCopy}
+      >
+        <Image
+          className={`${cssPrefix}__button-icon`}
+          src={copied ? iconCopySuccess : iconCopy}
+          layout="intrinsic"
+          alt="Successfully copied icon"
+        />
+      </button>
       <pre>{children}</pre>
     </div>
   );
