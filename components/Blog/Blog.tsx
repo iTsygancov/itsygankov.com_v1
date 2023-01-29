@@ -4,8 +4,9 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import { IPost } from '../../types';
-import PostsCategories from './_Categories/BlogCategories';
+import BlogCategories from './_Categories/BlogCategories';
 import { en, ru } from './Blog.locale';
+import { getCategories, getPosts } from './Blog.utils';
 
 
 interface PostsProps {
@@ -20,29 +21,9 @@ const Posts = ({ posts }: PostsProps) => {
   const query = router.query;
   const sortedPosts = posts.sort((a, b) => (a.data.id < b.data.id ? 1 : -1));
 
-  // TODO: add sorting to utils
-  const enPosts = sortedPosts.reduce((acc: IPost[], post) => {
-    if (!post.filePath.replace(/\.mdx?$/, '').endsWith('-ru')) {
-      acc.push(post);
-    }
-    return acc;
-  }, []);
+  const localePosts = getPosts(router, sortedPosts);
 
-  const ruPosts = sortedPosts.reduce((acc: IPost[], post) => {
-    if (post.filePath.replace(/\.mdx?$/, '').endsWith('-ru')) {
-      acc.push(post);
-    }
-    return acc;
-  }, []);
-
-  const enCategories = enPosts.reduce((acc: string[], post) => {
-    if (!acc.includes(post.data.category)) acc.push(post.data.category);
-    return acc;
-  }, []);
-  const ruCategories = ruPosts.reduce((acc: string[], post) => {
-    if (!acc.includes(post.data.category)) acc.push(post.data.category);
-    return acc;
-  }, []);
+  const localeCategories = getCategories(localePosts);
 
   return (
     <>
@@ -57,54 +38,30 @@ const Posts = ({ posts }: PostsProps) => {
       </Head>
       <Container size="xl" className={cssPrefix}>
         <Grid>
-          <Grid.Col md={9}>
+          <Grid.Col sm={9}>
             <h1 className={`${cssPrefix}__title`}>
-              {query.category || currentLocale.title}
+              {
+                query.category
+                  ? currentLocale.categoryTitle + query.category
+                  : currentLocale.title
+              }
             </h1>
             <div className={`${cssPrefix}__list`}>
-              {router.locale === 'en' && Object.keys(query).length !== 0
-                ? enPosts.map(
-                  (post) =>
-                    post.data.category === query.category && (
-                      <Link
-                        as={`/blog/${post.filePath.replace(/\.mdx?$/, '')}`}
-                        href={'/blog/[slug]'}
-                        key={post.data.id}
-                      >
-                        <a className={`${cssPrefix}__link`}>
-                          {post.data.title}
-                        </a>
-                      </Link>
-                    ),
+              {Object.keys(query).length !== 0
+                ? localePosts?.map((post) =>
+                  post.data.category === query.category && (
+                    <Link
+                      as={`/blog/${post.filePath.replace(/\.mdx?$/, '')}`}
+                      href={'/blog/[slug]'}
+                      key={post.data.id}
+                    >
+                      <a className={`${cssPrefix}__link`}>
+                        {post.data.title}
+                      </a>
+                    </Link>
+                  ),
                 )
-                : router.locale === 'en' &&
-                enPosts.map((post) => (
-                  <Link
-                    as={`/blog/${post.filePath.replace(/\.mdx?$/, '')}`}
-                    href={'/blog/[slug]'}
-                    key={post.data.id}
-                  >
-                    <a className={`${cssPrefix}__link`}>{post.data.title}</a>
-                  </Link>
-                ))}
-
-              {router.locale === 'ru' && Object.keys(query).length !== 0
-                ? ruPosts.map(
-                  (post) =>
-                    post.data.category === query.category && (
-                      <Link
-                        as={`/blog/${post.filePath.replace(/\.mdx?$/, '')}`}
-                        href={'/blog/[slug]'}
-                        key={post.data.id}
-                      >
-                        <a className={`${cssPrefix}__link`}>
-                          {post.data.title}
-                        </a>
-                      </Link>
-                    ),
-                )
-                : router.locale === 'ru' &&
-                ruPosts.map((post) => (
+                : localePosts?.map((post) => (
                   <Link
                     as={`/blog/${post.filePath.replace(/\.mdx?$/, '')}`}
                     href={'/blog/[slug]'}
@@ -115,12 +72,8 @@ const Posts = ({ posts }: PostsProps) => {
                 ))}
             </div>
           </Grid.Col>
-          <Grid.Col md={3}>
-            {
-              router.locale === 'en'
-                ? <PostsCategories categories={enCategories} />
-                : <PostsCategories categories={ruCategories} />
-            }
+          <Grid.Col sm={3}>
+            <BlogCategories categories={localeCategories} />
           </Grid.Col>
         </Grid>
       </Container>

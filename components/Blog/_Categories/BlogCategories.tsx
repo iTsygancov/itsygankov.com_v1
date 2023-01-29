@@ -5,22 +5,28 @@ import { useRouter } from 'next/router';
 import { en, ru } from './BlogCategories.locale';
 
 
-type PostsCategoriesProps = {
+type BlogCategoriesProps = {
   categories: string[];
 };
 
-const cssPrefix = 'postsCategories';
+const cssPrefix = 'blogCategories';
 
-const PostsCategories = ({ categories }: PostsCategoriesProps) => {
+const BlogCategories = ({ categories }: BlogCategoriesProps) => {
   const router = useRouter();
   const currentLocale = router.locale === 'en' ? en : ru;
   const query = router.query;
+
   return (
     <div className={cssPrefix}>
       <Head>
-        {query.category && <title>{query.category + ' | < iTsygankov />'}</title>}
+        {
+          query.category && 
+          <title>{query.category + ' | < iTsygankov />'}</title>
+        }
       </Head>
-      <h3 className={`${cssPrefix}__title`}>{currentLocale.title}</h3>
+      <h3 className={`${cssPrefix}__title`}>
+        {currentLocale.title}
+      </h3>
       <div className={`${cssPrefix}__list`}>
         {categories.map((category) => (
           <Link
@@ -44,4 +50,4 @@ const PostsCategories = ({ categories }: PostsCategoriesProps) => {
   );
 };
 
-export default PostsCategories;
+export default BlogCategories;
