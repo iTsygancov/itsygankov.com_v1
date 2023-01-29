@@ -1,11 +1,8 @@
-import {
-  Loader, Modal, Textarea, TextInput, 
-} from '@mantine/core';
-import Image from 'next/image';
+import { Loader, Textarea, TextInput } from '@mantine/core';
 import { useRouter } from 'next/router';
 import { ChangeEvent, FormEvent, useState } from 'react';
 
-import success from '../../../public/assets/icon-success.svg';
+import ContactsModal from '../_Modal/ContactsModal';
 import { en, ru } from './ContactsForm.locale';
 
 
@@ -97,40 +94,21 @@ const ContactsForm = () => {
         <button className={`${cssPrefix}__button`}>
           {showLoader ? (
             <Loader
-              color="#FFFFFF" size="sm"
-              variant="dots" />
+              color="#FFFFFF"
+              size="sm"
+              variant="dots"
+            />
           ) : (
             currentLocale.button
           )}
         </button>
       </form>
-      <Modal
+
+      <ContactsModal
         opened={opened}
-        className={`${cssPrefix}__modal`}
-        onClose={() => setOpened(false)}
-        size="xl"
-      >
-        <div className={`${cssPrefix}__modal-title`}>
-          <Image
-            className={`${cssPrefix}__modal-icon`}
-            src={success}
-            width={64}
-            height={64}
-            layout="fixed"
-            alt="Success icon"
-          />
-          <h2 className={`${cssPrefix}__modal-title`}>
-            {currentLocale.modal.title}
-          </h2>
-        </div>
-        <p className={`${cssPrefix}__modal-text`}>{currentLocale.modal.text}</p>
-        <button
-          className={`${cssPrefix}__modal-button`}
-          onClick={() => setOpened(false)}
-        >
-          {currentLocale.modal.button}
-        </button>
-      </Modal>
+        cssPrefix={cssPrefix}
+        handleClose={() => setOpened(false)}
+      />
     </>
   );
 };

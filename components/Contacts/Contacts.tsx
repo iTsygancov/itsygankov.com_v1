@@ -14,28 +14,32 @@ const cssPrefix = 'contacts';
 const Contacts = () => {
   const router = useRouter();
   const currentLocale = router.locale === 'en' ? en : ru;
+  const {
+    title, descriptionText, descriptionTitle, meta, 
+  } = currentLocale;
+
   return (
     <>
       <Head>
-        <title>{currentLocale.meta.title}</title>
+        <title>{meta.title}</title>
         <meta
           name="description"
-          content={currentLocale.meta.description}
+          content={meta.description}
         />
-        <meta property="og:title" content={currentLocale.meta.title} />
-        <meta property="og:description" content={currentLocale.meta.description} />
+        <meta property="og:title" content={meta.title} />
+        <meta property="og:description" content={meta.description} />
       </Head>
       <Container size="xl">
         <div className={cssPrefix}>
-          <h1 className={`${cssPrefix}__title`}>{currentLocale.title}</h1>
+          <h1 className={`${cssPrefix}__title`}>{title}</h1>
           <Grid gutter="xl">
             <Grid.Col lg={4} md={5}>
               <div className={`${cssPrefix}__description`}>
                 <h2 className={`${cssPrefix}__description-title`}>
-                  {currentLocale.descriptionTitle}
+                  {descriptionTitle}
                 </h2>
                 <p className={`${cssPrefix}__description-text`}>
-                  {currentLocale.descriptionText}
+                  {descriptionText}
                 </p>
               </div>
               <div className={`${cssPrefix}__links`}>
@@ -89,7 +93,6 @@ const Contacts = () => {
           </Grid>
         </div>
       </Container>
-
     </>
   );
 };
