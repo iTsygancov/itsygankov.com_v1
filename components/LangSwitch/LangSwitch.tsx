@@ -11,17 +11,20 @@ const LangSwitch = () => {
 
   const handleLanguage = () => {
     const currentPath = router.asPath;
-    const slicedPath = currentPath.slice(0, -3);
     if (router.locale === 'en')
       router.push(
         router.asPath,
-        currentPath.includes('/blog/') ? `${currentPath}-ru` : currentPath,
+        currentPath.includes('/blog/') ?
+          currentPath.slice(0, -3) + '-ru'
+          : currentPath,
         { locale: 'ru', scroll: true },
       );
     if (router.locale === 'ru')
       router.push(
         router.asPath,
-        currentPath.includes('/blog/') ? slicedPath : currentPath,
+        currentPath.includes('/blog/') ?
+          currentPath.slice(0, -3) + '-en'
+          : currentPath,
         { locale: 'en', scroll: true },
       );
   };
