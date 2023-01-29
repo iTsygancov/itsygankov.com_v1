@@ -13,26 +13,28 @@ const cssPrefix = 'hero';
 const Hero = () => {
   const router = useRouter();
   const currentLocale = router.locale === 'en' ? en : ru;
+  const { description, subtitle, title } = currentLocale;
+
   return (
     <>
       <Head>
         <meta
           name="description"
-          content={currentLocale.description}
+          content={description}
         />
-        <meta property="og:description" content={currentLocale.description} />
+        <meta property="og:description" content={description} />
       </Head>
       <Container size='xl'>
         <div className="hero">
           <div className={`${cssPrefix}__content`}>
             <h1 className={`${cssPrefix}__title`}>
-              {currentLocale.title}
+              {title}
             </h1>
             <p className={`${cssPrefix}__subtitle`}>
-              {currentLocale.subtitle}
+              {subtitle}
             </p>
             <p className={`${cssPrefix}__subtitle`}>
-              {currentLocale.description}
+              {description}
             </p>
           </div>
           <div className={`${cssPrefix}__image`}>
@@ -44,7 +46,6 @@ const Hero = () => {
           </div>
         </div>
       </Container>
-
     </>
   );
 };
