@@ -11,11 +11,14 @@ const cssPrefix = 'aboutMiscellaneous';
 const AboutMiscellaneous = () => {
   const router = useRouter();
   const currentLocale = router.locale === 'en' ? en : ru;
+  const { linkTitle, src, title } = currentLocale;
 
   return (
     <div className={cssPrefix}>
-      <h2 className={`${cssPrefix}__title`}>{currentLocale.title}</h2>
-      <Link href={currentLocale.src} locale={false}>
+      <h2 className={`${cssPrefix}__title`}>
+        {title}
+      </h2>
+      <Link href={src} locale={false}>
         <a className={`${cssPrefix}__link`} target="_blank">
           <Image
             className={`${cssPrefix}__link-icon`}
@@ -23,7 +26,7 @@ const AboutMiscellaneous = () => {
             layout="intrinsic"
             alt="Download icon"
           />
-          {currentLocale.linkTitle}
+          {linkTitle}
         </a>
       </Link>
       <hr />

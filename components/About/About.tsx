@@ -14,22 +14,29 @@ const cssPrefix = 'about';
 const About = () => {
   const router = useRouter();
   const currentLocale = router.locale === 'en' ? en : ru;
+  const {
+    descriptionText, link, meta, outro, title, 
+  } = currentLocale;
 
   return (
     <>
       <Head>
-        <title>{currentLocale.meta.title}</title>
+        <title>
+          {meta.title}
+        </title>
         <meta
           name="description"
-          content={currentLocale.meta.description}
+          content={meta.description}
         />
-        <meta property="og:title" content={currentLocale.meta.title} />
-        <meta property="og:description" content={currentLocale.meta.description} />
+        <meta property="og:title" content={meta.title} />
+        <meta property="og:description" content={meta.description} />
       </Head>
       <Container size="xl" className={cssPrefix}>
-        <h1 className={`${cssPrefix}__title`}>{currentLocale.title}</h1>
+        <h1 className={`${cssPrefix}__title`}>
+          {title}
+        </h1>
         <div className={`${cssPrefix}__description`}>
-          {currentLocale.descriptionText.map((text) => (
+          {descriptionText.map((text) => (
             <p className={`${cssPrefix}__description-text`} key={text}>
               {text}
             </p>
@@ -38,7 +45,12 @@ const About = () => {
         <AboutSkills />
         <AboutTools />
         <AboutMiscellaneous />
-        <p className={`${cssPrefix}__outro`}>{currentLocale.outro}<Link href='/contacts'><a>{currentLocale.link}</a></Link></p>
+        <p className={`${cssPrefix}__outro`}>
+          {outro}
+          <Link href='/contacts'>
+            <a>{link}</a>
+          </Link>
+        </p>
       </Container>
     </>
   );
