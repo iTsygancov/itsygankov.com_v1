@@ -9,20 +9,30 @@ export const getSpotlightActions = async (router: NextRouter) => {
     posts.json().then((posts: IPost[]) => {
       const actionsFromPosts: SpotlightAction[] = posts.reduce(
         (acc: SpotlightAction[], post: IPost) => {
-          if (router.locale === 'en' && !post.filePath.replace(/\.mdx?$/, '').endsWith('-ru')) {
+          if (
+            router.locale === 'en' &&
+            !post.filePath.replace(/\.mdx?$/, '').endsWith('-ru')
+          ) {
             acc.push({
               title: post.data.title,
-              onTrigger: () => router.push(`/blog/${post.filePath.replace(/\.mdx?$/, '')}`),
+              onTrigger: () =>
+                router.push(`/blog/${post.filePath.replace(/\.mdx?$/, '')}`),
             });
           }
-          if (router.locale === 'ru' && post.filePath.replace(/\.mdx?$/, '').endsWith('-ru')) {
+          if (
+            router.locale === 'ru' &&
+            post.filePath.replace(/\.mdx?$/, '').endsWith('-ru')
+          ) {
             acc.push({
               title: post.data.title,
-              onTrigger: () => router.push(`/blog/${post.filePath.replace(/\.mdx?$/, '')}`),
+              onTrigger: () =>
+                router.push(`/blog/${post.filePath.replace(/\.mdx?$/, '')}`),
             });
           }
           return acc;
-        }, []);
+        },
+        [],
+      );
       return actionsFromPosts;
     }),
   );

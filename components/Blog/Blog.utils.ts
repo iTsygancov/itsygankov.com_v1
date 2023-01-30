@@ -26,4 +26,4 @@ export const getCategories = (posts: IPost[]) => {
     if (!acc.includes(post.data.category)) acc.push(post.data.category);
     return acc;
   }, []);
-}; 
+};

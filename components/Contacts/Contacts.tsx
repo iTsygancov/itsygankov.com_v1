@@ -23,17 +23,26 @@ const Contacts = () => {
       <Head>
         <title>{meta.title}</title>
         <meta
-          name="description"
+          name='description'
           content={meta.description}
         />
-        <meta property="og:title" content={meta.title} />
-        <meta property="og:description" content={meta.description} />
+        <meta
+          property='og:title'
+          content={meta.title}
+        />
+        <meta
+          property='og:description'
+          content={meta.description}
+        />
       </Head>
-      <Container size="xl">
+      <Container size='xl'>
         <div className={cssPrefix}>
           <h1 className={`${cssPrefix}__title`}>{title}</h1>
-          <Grid gutter="xl">
-            <Grid.Col lg={4} md={5}>
+          <Grid gutter='xl'>
+            <Grid.Col
+              lg={4}
+              md={5}
+            >
               <div className={`${cssPrefix}__description`}>
                 <h2 className={`${cssPrefix}__description-title`}>
                   {descriptionTitle}
@@ -50,17 +59,17 @@ const Contacts = () => {
                       layout='intrinsic'
                       width={32}
                       height={32}
-                      alt="Message icon"
+                      alt='Message icon'
                     />
                   </div>
                   <div className={`${cssPrefix}__item-content`}>
                     <span className={`${cssPrefix}__item-label`}>Email</span>
                     <a
                       className={`${cssPrefix}__item-link`}
-                      href="mailto:info@itsygankov.com"
-                      target="blank"
+                      href='mailto:info@itsygankov.com'
+                      target='blank'
                     >
-                  info@itsygankov.com
+                      info@itsygankov.com
                     </a>
                   </div>
                 </div>
@@ -70,24 +79,27 @@ const Contacts = () => {
                       src={telegram}
                       width={32}
                       height={32}
-                      layout="intrinsic"
-                      alt="Telegram icon"
+                      layout='intrinsic'
+                      alt='Telegram icon'
                     />
                   </div>
                   <div className={`${cssPrefix}__item-content`}>
                     <span className={`${cssPrefix}__item-label`}>Telegram</span>
                     <a
                       className={`${cssPrefix}__item-link`}
-                      href="https://t.me/I_Tsygankov"
-                      target="blank"
+                      href='https://t.me/I_Tsygankov'
+                      target='blank'
                     >
-                  @I_Tsygankov
+                      @I_Tsygankov
                     </a>
                   </div>
                 </div>
               </div>
             </Grid.Col>
-            <Grid.Col lg={8} md={7}>
+            <Grid.Col
+              lg={8}
+              md={7}
+            >
               <ContactsForm />
             </Grid.Col>
           </Grid>

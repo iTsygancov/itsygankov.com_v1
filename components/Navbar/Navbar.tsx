@@ -21,7 +21,10 @@ const Navbar = ({ style, handleClick }: NavbarProps) => {
   ];
 
   return (
-    <nav className={cssPrefix} style={{ ...style }}>
+    <nav
+      className={cssPrefix}
+      style={{ ...style }}
+    >
       <ul className={`${cssPrefix}__menu`}>
         {links.map((el) => {
           const { text, link } = el;
@@ -35,14 +38,16 @@ const Navbar = ({ style, handleClick }: NavbarProps) => {
               key={link}
             >
               <Link href={link}>
-                <a className={`${cssPrefix}__menu-link`} onClick={handleClick}>
+                <a
+                  className={`${cssPrefix}__menu-link`}
+                  onClick={handleClick}
+                >
                   {text}
                 </a>
               </Link>
             </li>
           );
-        },
-        )}
+        })}
       </ul>
     </nav>
   );

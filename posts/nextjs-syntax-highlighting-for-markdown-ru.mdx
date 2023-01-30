@@ -1,24 +1,39 @@
 ---
-id: "21"
+id: '21'
 title: Next.js - подсветка синтаксиса для Markdown
 section: latest
 date: 13 декабря, 2022
 category: Next.js
-description: Узнайте, как добавить подсветку синтаксиса к файлам markdown в приложении Next.js, используя библиотеку, такую как highlight.js.
-keywords: ["Next.js", "подсветка синтаксиса", "markdown", "PrismJS", "веб-разработка", "javascript"]
+description:
+  Узнайте, как добавить подсветку синтаксиса к файлам markdown в приложении
+  Next.js, используя библиотеку, такую как highlight.js.
+keywords:
+  [
+    'Next.js',
+    'подсветка синтаксиса',
+    'markdown',
+    'PrismJS',
+    'веб-разработка',
+    'javascript',
+  ]
 ---
 
-Вы можете избежать многих ошибок, которые я совершил, пытаясь найти лучший вариант подсветки синтаксиса, когда вы только начали свой путь к реализации. Добавив подсветку синтаксиса, вы можете сделать фрагменты кода в вашем приложении Next.js похожими на фрагменты кода в предпочитаемом вами настольном редакторе. Некоторые способы подсветки могут значительно замедлить время загрузки клиента и вызвать негативные впечатления у многих пользователей. Сегодня мы рассмотрим технику статической генерации, которая выполняет всю работу заранее, чтобы обеспечить пользователю быструю и легкую работу.
+Вы можете избежать многих ошибок, которые я совершил, пытаясь найти лучший
+вариант подсветки синтаксиса, когда вы только начали свой путь к реализации.
+Добавив подсветку синтаксиса, вы можете сделать фрагменты кода в вашем
+приложении Next.js похожими на фрагменты кода в предпочитаемом вами настольном
+редакторе. Некоторые способы подсветки могут значительно замедлить время
+загрузки клиента и вызвать негативные впечатления у многих пользователей.
+Сегодня мы рассмотрим технику статической генерации, которая выполняет всю
+работу заранее, чтобы обеспечить пользователю быструю и легкую работу.
 
 Конечный продукт будет похож на этот фрагмент TypeScript:
 
-<PostCodeHeader>
-  components/ExampleComponent.tsx
-</PostCodeHeader>
+<PostCodeHeader>components/ExampleComponent.tsx</PostCodeHeader>
 
 ```tsx
 interface ExampleComponentProps {
-  text: string
+  text: string;
 }
 
 const Example = ({ text }: ExampleComponentProps) => {
@@ -28,39 +43,88 @@ const Example = ({ text }: ExampleComponentProps) => {
 export default Example;
 ```
 
-Как вы могли заметить, фрагмент кода соответствует дизайну моего сайта, и при желании я могу добавить альтернативные варианты оформления для темной и светлой темы.
+Как вы могли заметить, фрагмент кода соответствует дизайну моего сайта, и при
+желании я могу добавить альтернативные варианты оформления для темной и светлой
+темы.
 
 ## Статическое выделение синтаксиса
 
 ### Технологический стек
 
-Для разработки сниппетов, которые я использую в своем блоге, мы будем использовать следующий технологический стек:
+Для разработки сниппетов, которые я использую в своем блоге, мы будем
+использовать следующий технологический стек:
 
-- __Статические Markdown файлы__. В этом руководстве будут использоваться только файлы local.md из вашего проекта Next.js.
-- <a href="https://mdxjs.com/" target="_blank"><strong>MDX</strong></a>. Компилятор Markdown, позволяющий рендерить JSX, а также настраиваемые компоненты.
-- <a href="https://github.com/hashicorp/next-mdx-remote" target="_blank"><strong>next-mdx-remote</strong></a>. Инструмент, который после статической загрузки MDX позволяет Next.js правильно рендерить на клиенте.
-- Для правильной стилизации блоков кода мы будем использовать <a href="https://highlightjs.org/" target="_blank"><strong>highlight.js</strong></a> или <a href="https://prismjs.com/" target="_blank"><strong>Prism</strong></a>.
-- MDX, который также использует <a href="https://github.com/rehypejs/rehype" target="_blank"><strong>Rehype</strong></a> внутри, предоставляет доступ к плагинам Rehype, которые мы будем использовать для этих стилизации блоков.
+- **Статические Markdown файлы**. В этом руководстве будут использоваться только
+  файлы local.md из вашего проекта Next.js.
+- <a
+    href='https://mdxjs.com/'
+    target='_blank'
+  >
+    <strong>MDX</strong>
+  </a>
+  . Компилятор Markdown, позволяющий рендерить JSX, а также настраиваемые компоненты.
+- <a
+    href='https://github.com/hashicorp/next-mdx-remote'
+    target='_blank'
+  >
+    <strong>next-mdx-remote</strong>
+  </a>
+  . Инструмент, который после статической загрузки MDX позволяет Next.js правильно
+  рендерить на клиенте.
+- Для правильной стилизации блоков кода мы будем использовать
+  <a
+    href='https://highlightjs.org/'
+    target='_blank'
+  >
+    <strong>highlight.js</strong>
+  </a>
+  или <a
+    href='https://prismjs.com/'
+    target='_blank'
+  >
+    <strong>Prism</strong>
+  </a>
+  .
+- MDX, который также использует
+  <a
+    href='https://github.com/rehypejs/rehype'
+    target='_blank'
+  >
+    <strong>Rehype</strong>
+  </a>
+  внутри, предоставляет доступ к плагинам Rehype, которые мы будем использовать для
+  этих стилизации блоков.
 
 ### Подготовка проекта
 
-Прежде чем начать работу, у вас должно быть рабочее приложение <a href="https://nextjs.org/docs/api-reference/create-next-app" target="_blank"><strong>Create Next App</strong></a> со страницей, на которую вы хотите загрузить текст Markdown. Если вы начинаете с нуля, Create Next App поможет вам запустить проект для новичков. Далее, установите все неоходимые зависимости:
+Прежде чем начать работу, у вас должно быть рабочее приложение
+
+<a
+  href='https://nextjs.org/docs/api-reference/create-next-app'
+  target='_blank'
+>
+  <strong>Create Next App</strong>
+</a> со страницей, на которую вы хотите загрузить текст Markdown. Если вы начинаете
+с нуля, Create Next App поможет вам запустить проект для новичков. Далее, установите
+все неоходимые зависимости:
 
 ```bash
 npm i --save next-mdx-remote rehype-highlight
 ```
 
-__Prism или Highlight.js?__ Хотя у каждого метода есть свои достоинства, в данном примере мы выберем Highlight.js. Если вы хотите использовать Prism вместо Highlight, просто замените 'rehype-highlight,' на '@mapbox/rehype-prism', а затем используйте стили Prism вместо стилей Highlight.js.
+**Prism или Highlight.js?** Хотя у каждого метода есть свои достоинства, в
+данном примере мы выберем Highlight.js. Если вы хотите использовать Prism вместо
+Highlight, просто замените 'rehype-highlight,' на '@mapbox/rehype-prism', а
+затем используйте стили Prism вместо стилей Highlight.js.
 
 ### Добавление Markdown
 
-Начните с создания вашего первого файла Markdown. Мы создадим папку `blog` в проекте и добавим в нее пример записи в блоге.
+Начните с создания вашего первого файла Markdown. Мы создадим папку `blog` в
+проекте и добавим в нее пример записи в блоге.
 
-<PostCodeHeader>
-  blog/example.md
-</PostCodeHeader>
+<PostCodeHeader>blog/example.md</PostCodeHeader>
 
-~~~md
+````md
 # My example post
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -69,18 +133,21 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 const test = 'test';
 
 interface ITest {
-  prop: string
+  prop: string;
 }
 ```
-~~~
+````
 
 ### Сериализация разметки
 
-На вашей странице Next.js мы будем использовать функцию 'getStaticProps' для передачи набора пропсов главному компоненту страницы. Поскольку 'getStaticProps' обычно используется во время сборки в продакшене, Next.js разделит код таким образом, что ни одна из используемых здесь зависимостей не будет передана в клиентских пакетах, если вы используете ее должным образом. Загрузите ваш Markdown-файл, затем сериализуйте его с помощью 'next-mdx-remote':
+На вашей странице Next.js мы будем использовать функцию 'getStaticProps' для
+передачи набора пропсов главному компоненту страницы. Поскольку 'getStaticProps'
+обычно используется во время сборки в продакшене, Next.js разделит код таким
+образом, что ни одна из используемых здесь зависимостей не будет передана в
+клиентских пакетах, если вы используете ее должным образом. Загрузите ваш
+Markdown-файл, затем сериализуйте его с помощью 'next-mdx-remote':
 
-<PostCodeHeader>
-  pages/blog/example.tsx
-</PostCodeHeader>
+<PostCodeHeader>pages/blog/example.tsx</PostCodeHeader>
 
 ```tsx
 import { serialize } from 'next-mdx-remote/serialize';
@@ -89,8 +156,8 @@ import fs from 'fs';
 
 export const getStaticProps = async () => {
   const post = await fs.readFileSync(
-    path.join(process.cwd(), "blog", "example.md"),
-    "utf-8"
+    path.join(process.cwd(), 'blog', 'example.md'),
+    'utf-8'
   );
   const mdxSource = await serialize(post);
 
@@ -104,20 +171,19 @@ export const getStaticProps = async () => {
 
 ### Рендерим Markdown
 
-Теперь мы будем использовать компонент `MDXRemote` для рендеринга вашего сериализованного MDX.
+Теперь мы будем использовать компонент `MDXRemote` для рендеринга вашего
+сериализованного MDX.
 
-<PostCodeHeader>
-  pages/blog/example.tsx
-</PostCodeHeader>
+<PostCodeHeader>pages/blog/example.tsx</PostCodeHeader>
 
 ```tsx
-import { MDXRemote } from "next-mdx-remote";
+import { MDXRemote } from 'next-mdx-remote';
 
 // ...getStaticProps code
 
 const Page = ({ mdxSource }) => {
   return (
-    <div className="blog-post">
+    <div className='blog-post'>
       <MDXRemote {...mdxSource} />
     </div>
   );
@@ -126,24 +192,33 @@ const Page = ({ mdxSource }) => {
 export default Page;
 ```
 
-Если вы перейдете по адресу `localhost:3000/blog/example`, вы должны увидеть отрендеренное содержимое Markdown.
+Если вы перейдете по адресу `localhost:3000/blog/example`, вы должны увидеть
+отрендеренное содержимое Markdown.
 
-<a href="https://res.cloudinary.com/deihopdzq/image/upload/v1670959749/itsygankov.com/Next.js%20-%20static%20syntax%20highlighting%20for%20Markdown/1_hmiotv.png" target="_blank">
-  <img src="https://res.cloudinary.com/deihopdzq/image/upload/v1670959749/itsygankov.com/Next.js%20-%20static%20syntax%20highlighting%20for%20Markdown/1_hmiotv.png" alt="Step 1" />
+<a
+  href='https://res.cloudinary.com/deihopdzq/image/upload/v1670959749/itsygankov.com/Next.js%20-%20static%20syntax%20highlighting%20for%20Markdown/1_hmiotv.png'
+  target='_blank'
+>
+  <img
+    src='https://res.cloudinary.com/deihopdzq/image/upload/v1670959749/itsygankov.com/Next.js%20-%20static%20syntax%20highlighting%20for%20Markdown/1_hmiotv.png'
+    alt='Step 1'
+  />
 </a>
 
-Если ваше приложение включает стили для тегов `pre` или `code`, вы можете увидеть применение этих стилей, но на данный момент вы не можете стилизовать отдельные синтаксические блоки. Давайте разберемся с этим.
+Если ваше приложение включает стили для тегов `pre` или `code`, вы можете
+увидеть применение этих стилей, но на данный момент вы не можете стилизовать
+отдельные синтаксические блоки. Давайте разберемся с этим.
 
 ### Выделение кода
 
-Чтобы обеспечить подсветку синтаксиса для сериализованных блоков кода, мы будем использовать плагин Rehype. Везде, где вы вызывали метод serialize(), сделайте следующее простое изменение:
+Чтобы обеспечить подсветку синтаксиса для сериализованных блоков кода, мы будем
+использовать плагин Rehype. Везде, где вы вызывали метод serialize(), сделайте
+следующее простое изменение:
 
-<PostCodeHeader>
-  pages/blog/example.tsx
-</PostCodeHeader>
+<PostCodeHeader>pages/blog/example.tsx</PostCodeHeader>
 
 ```tsx
-import rehypeHighlight from "rehype-highlight";
+import rehypeHighlight from 'rehype-highlight';
 
 export const getStaticProps = async () => {
   //...
@@ -154,34 +229,84 @@ export const getStaticProps = async () => {
 };
 ```
 
-Если вы посмотрите на страницу, то не заметите никаких изменений. Но если вы откроете инспектор, то заметите, что Highlight.js создал классы для тегов внутри вашего блока кода!
+Если вы посмотрите на страницу, то не заметите никаких изменений. Но если вы
+откроете инспектор, то заметите, что Highlight.js создал классы для тегов внутри
+вашего блока кода!
 
-<a href="https://res.cloudinary.com/deihopdzq/image/upload/v1670959785/itsygankov.com/Next.js%20-%20static%20syntax%20highlighting%20for%20Markdown/2_v1mvha.png" target="_blank">
-  <img src="https://res.cloudinary.com/deihopdzq/image/upload/v1670959785/itsygankov.com/Next.js%20-%20static%20syntax%20highlighting%20for%20Markdown/2_v1mvha.png" alt="Step 1" />
+<a
+  href='https://res.cloudinary.com/deihopdzq/image/upload/v1670959785/itsygankov.com/Next.js%20-%20static%20syntax%20highlighting%20for%20Markdown/2_v1mvha.png'
+  target='_blank'
+>
+  <img
+    src='https://res.cloudinary.com/deihopdzq/image/upload/v1670959785/itsygankov.com/Next.js%20-%20static%20syntax%20highlighting%20for%20Markdown/2_v1mvha.png'
+    alt='Step 1'
+  />
 </a>
 
 ### Добавление стилей
 
-Перейдите на страницу загрузки сайта Highlight.js. Существует несколько альтернатив в зависимости от того, как вы хотите загрузить свои стили. Вы можете загрузить таблицу стилей с помощью предлагаемого ими CDN или скачать файл CSS для выбранной темы и загрузить его с помощью встроенной поддержки CSS в Next.js (которая обеспечивает горячую перезагрузку).
+Перейдите на страницу загрузки сайта Highlight.js. Существует несколько
+альтернатив в зависимости от того, как вы хотите загрузить свои стили. Вы можете
+загрузить таблицу стилей с помощью предлагаемого ими CDN или скачать файл CSS
+для выбранной темы и загрузить его с помощью встроенной поддержки CSS в Next.js
+(которая обеспечивает горячую перезагрузку).
 
-Если вы загружаете тему, добавьте глобальную таблицу стилей в файл `pages/_app.js`, как описано в руководстве Next.js. Следует отметить, что это загружает CSS для всего приложения, а не только для вашего поста в блоге. Если вы просто хотите применить CSS к одной странице или компоненту, вам стоит обратить внимание на CSS-модули или решение CSS-in-JS.
+Если вы загружаете тему, добавьте глобальную таблицу стилей в файл
+`pages/_app.js`, как описано в руководстве Next.js. Следует отметить, что это
+загружает CSS для всего приложения, а не только для вашего поста в блоге. Если
+вы просто хотите применить CSS к одной странице или компоненту, вам стоит
+обратить внимание на CSS-модули или решение CSS-in-JS.
 
-<PostCodeHeader>
-  pages/_app.tsx
-</PostCodeHeader>
+<PostCodeHeader>pages/_app.tsx</PostCodeHeader>
 
 ```tsx
 import '../styles/hljs.css';
 ```
 
-Вы увидите правильно выделенный блок кода, так как теперь приложение понимает, как должны выглядеть классы Highlight.js.
+Вы увидите правильно выделенный блок кода, так как теперь приложение понимает,
+как должны выглядеть классы Highlight.js.
 
-<a href="https://res.cloudinary.com/deihopdzq/image/upload/v1670959785/itsygankov.com/Next.js%20-%20static%20syntax%20highlighting%20for%20Markdown/3_nkz33z.png" target="_blank">
-  <img src="https://res.cloudinary.com/deihopdzq/image/upload/v1670959785/itsygankov.com/Next.js%20-%20static%20syntax%20highlighting%20for%20Markdown/3_nkz33z.png" alt="Step 1" />
+<a
+  href='https://res.cloudinary.com/deihopdzq/image/upload/v1670959785/itsygankov.com/Next.js%20-%20static%20syntax%20highlighting%20for%20Markdown/3_nkz33z.png'
+  target='_blank'
+>
+  <img
+    src='https://res.cloudinary.com/deihopdzq/image/upload/v1670959785/itsygankov.com/Next.js%20-%20static%20syntax%20highlighting%20for%20Markdown/3_nkz33z.png'
+    alt='Step 1'
+  />
 </a>
 
 ## Заключение
 
-Поскольку подсветка синтаксиса во время сборки обеспечивает меньшую гибкость, чем решение на стороне клиента, вам, возможно, придется отказаться от некоторых функциональных возможностей, предоставляемых таким инструментом, как <a href="https://github.com/react-syntax-highlighter/react-syntax-highlighter" target="_blank"><strong>React Syntax Highlighter</strong></a>, чтобы получить прирост скорости. Если функциональности недостаточно для ваших нужд, вы можете перейти на использование React Syntax Highlighter, следуя инструкциям в руководстве по <a href="https://mdxjs.com/guides/syntax-highlighting/#syntax-highlighting-at-run-time" target="_blank"><strong>MDX Syntax Highlighting</strong></a>. Чтобы отложить начальную загрузку, используйте одну из опций асинхронной сборки - это может потребовать использования <a href="https://nextjs.org/docs/advanced-features/dynamic-import" target="_blank"><strong>Dynamic Import</strong></a>.
+Поскольку подсветка синтаксиса во время сборки обеспечивает меньшую гибкость,
+чем решение на стороне клиента, вам, возможно, придется отказаться от некоторых
+функциональных возможностей, предоставляемых таким инструментом, как
 
-Если вы хотите показать только несколько строк красивого выделенного кода, этот метод статического экспорта - быстрый и простой способ украсить ваши фрагменты кода.
+<a
+  href='https://github.com/react-syntax-highlighter/react-syntax-highlighter'
+  target='_blank'
+>
+  <strong>React Syntax Highlighter</strong>
+</a>
+, чтобы получить прирост скорости. Если функциональности недостаточно для ваших нужд,
+вы можете перейти на использование React Syntax Highlighter, следуя инструкциям в
+руководстве по
+<a
+  href='https://mdxjs.com/guides/syntax-highlighting/#syntax-highlighting-at-run-time'
+  target='_blank'
+>
+  <strong>MDX Syntax Highlighting</strong>
+</a>
+. Чтобы отложить начальную загрузку, используйте одну из опций асинхронной сборки
+- это может потребовать использования
+<a
+  href='https://nextjs.org/docs/advanced-features/dynamic-import'
+  target='_blank'
+>
+  <strong>Dynamic Import</strong>
+</a>
+.
+
+Если вы хотите показать только несколько строк красивого выделенного кода, этот
+метод статического экспорта - быстрый и простой способ украсить ваши фрагменты
+кода.

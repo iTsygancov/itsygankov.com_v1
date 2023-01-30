@@ -29,7 +29,10 @@ function Header() {
 
   return (
     <header className={cssPrefix}>
-      <Container className={`${cssPrefix}__container`} size="xl">
+      <Container
+        className={`${cssPrefix}__container`}
+        size='xl'
+      >
         <div className={`${cssPrefix}__left`}>
           {matches ? (
             <>
@@ -38,20 +41,32 @@ function Header() {
             </>
           ) : (
             <>
-              <Burger opened={opened} onClick={toggle} />
-              <Transition transition="scale-x" mounted={opened}>
+              <Burger
+                opened={opened}
+                onClick={toggle}
+              />
+              <Transition
+                transition='scale-x'
+                mounted={opened}
+              >
                 {(styles) => (
-                  <Navbar handleClick={toggle} style={{ ...styles }} />
+                  <Navbar
+                    handleClick={toggle}
+                    style={{ ...styles }}
+                  />
                 )}
               </Transition>
-              <Logo opened={opened} handleClick={toggle} />
+              <Logo
+                opened={opened}
+                handleClick={toggle}
+              />
             </>
           )}
         </div>
         <SpotlightProvider
           actions={actions}
           searchPlaceholder={currentLocale.spotlightProvider.searchPlaceholder}
-          shortcut="mod + k"
+          shortcut='mod + k'
           nothingFoundMessage={
             currentLocale.spotlightProvider.nothingFoundMessage
           }

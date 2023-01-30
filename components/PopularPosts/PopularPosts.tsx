@@ -17,10 +17,8 @@ const PopularPosts = ({ posts }: PopularPostsProps) => {
   const currentLocale = router.locale === 'en' ? en : ru;
   return (
     <div className={cssPrefix}>
-      <Container size="xl">
-        <h2 className={`${cssPrefix}__title`}>
-          {currentLocale.title}
-        </h2>
+      <Container size='xl'>
+        <h2 className={`${cssPrefix}__title`}>{currentLocale.title}</h2>
         <PostList posts={posts} />
       </Container>
     </div>

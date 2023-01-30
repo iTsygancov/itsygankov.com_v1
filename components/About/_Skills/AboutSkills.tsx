@@ -15,7 +15,10 @@ const AboutSkills = () => {
     <div className={cssPrefix}>
       <h2 className={`${cssPrefix}__title`}>{currentLocale.title}</h2>
       {data.map((item: string) => (
-        <Badge className={`${cssPrefix}__badge`} key={item}>
+        <Badge
+          className={`${cssPrefix}__badge`}
+          key={item}
+        >
           {item}
         </Badge>
       ))}

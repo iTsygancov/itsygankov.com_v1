@@ -1,29 +1,44 @@
 ---
-id: "30"
+id: '30'
 title: CSS Scroll Snap
 section: latest
 date: December 21, 2022
 category: CSS
-description: Learn how to use CSS Scroll Snap to create smooth scrolling and snapping effects on your web pages.
-keywords: ["CSS Scroll Snap", "smooth scrolling", "snapping effects", "web design", "web development"]
+description:
+  Learn how to use CSS Scroll Snap to create smooth scrolling and snapping
+  effects on your web pages.
+keywords:
+  [
+    'CSS Scroll Snap',
+    'smooth scrolling',
+    'snapping effects',
+    'web design',
+    'web development',
+  ]
 ---
 
-CSS Scroll Snap is a powerful tool for creating smooth, visually appealing scrolling experiences on the web. It allows developers to specify which elements on a page should snap to the viewport as the user scrolls, creating a guided, intuitive scrolling experience for the user.
+CSS Scroll Snap is a powerful tool for creating smooth, visually appealing
+scrolling experiences on the web. It allows developers to specify which elements
+on a page should snap to the viewport as the user scrolls, creating a guided,
+intuitive scrolling experience for the user.
 
-To use CSS Scroll Snap, you'll need to apply the `scroll-snap-type` property to a container element, and the `scroll-snap-align` property to its child elements. The `scroll-snap-type` property determines the snapping behavior of the container, while the `scroll-snap-align` property determines the alignment of the child elements within the container.
+To use CSS Scroll Snap, you'll need to apply the `scroll-snap-type` property to
+a container element, and the `scroll-snap-align` property to its child elements.
+The `scroll-snap-type` property determines the snapping behavior of the
+container, while the `scroll-snap-align` property determines the alignment of
+the child elements within the container.
 
-Here is an example of how you might use CSS Scroll Snap to create a vertically scrolling container with snapping behavior:
+Here is an example of how you might use CSS Scroll Snap to create a vertically
+scrolling container with snapping behavior:
 
-First, add the following markup to the body of the `index.html` file: 
+First, add the following markup to the body of the `index.html` file:
 
-<PostCodeHeader>
-index.html
-</PostCodeHeader>
+<PostCodeHeader>index.html</PostCodeHeader>
 ```html
-<div class="container">
-  <div class="item"></div>
-  <div class="item"></div>
-  <div class="item"></div>
+<div class='container'>
+  <div class='item'></div>
+  <div class='item'></div>
+  <div class='item'></div>
 </div>
 ```
 
@@ -41,24 +56,15 @@ style.css
   scroll-snap-type: y mandatory;
 }
 
-.item {
-  width: 480px;
-  height: 180px;
-  scroll-snap-align: start;
-  scroll-snap-stop: normal;
-}
+.item { width: 480px; height: 180px; scroll-snap-align: start; scroll-snap-stop:
+normal; }
 
-.item:nth-child(1) {
-  background: red;
-}
+.item:nth-child(1) { background: red; }
 
-.item:nth-child(2) {
-  background: blue;
-}
+.item:nth-child(2) { background: blue; }
 
-.item:nth-child(3) {
-  background: green;
-}
+.item:nth-child(3) { background: green; }
+
 ```
 
 You can see a working example in action on this Codepen:
@@ -96,3 +102,4 @@ CSS Scroll Snap can be a particularly useful tool for creating carousels and oth
 ## Заключение
 
 CSS Scroll Snap is a valuable tool for creating engaging, user-friendly scrolling experiences on the web. It's easy to use and offers a wide range of customization options, making it a great choice for developers looking to add some extra polish to their web projects. Whether you're creating a simple scrolling container or a more complex functionality.
+```

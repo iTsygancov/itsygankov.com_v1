@@ -21,23 +21,31 @@ const About = () => {
   return (
     <>
       <Head>
-        <title>
-          {meta.title}
-        </title>
+        <title>{meta.title}</title>
         <meta
-          name="description"
+          name='description'
           content={meta.description}
         />
-        <meta property="og:title" content={meta.title} />
-        <meta property="og:description" content={meta.description} />
+        <meta
+          property='og:title'
+          content={meta.title}
+        />
+        <meta
+          property='og:description'
+          content={meta.description}
+        />
       </Head>
-      <Container size="xl" className={cssPrefix}>
-        <h1 className={`${cssPrefix}__title`}>
-          {title}
-        </h1>
+      <Container
+        size='xl'
+        className={cssPrefix}
+      >
+        <h1 className={`${cssPrefix}__title`}>{title}</h1>
         <div className={`${cssPrefix}__description`}>
           {descriptionText.map((text) => (
-            <p className={`${cssPrefix}__description-text`} key={text}>
+            <p
+              className={`${cssPrefix}__description-text`}
+              key={text}
+            >
               {text}
             </p>
           ))}

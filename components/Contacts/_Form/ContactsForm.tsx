@@ -56,22 +56,25 @@ const ContactsForm = () => {
 
   return (
     <>
-      <form className={cssPrefix} onSubmit={formSubmit}>
+      <form
+        className={cssPrefix}
+        onSubmit={formSubmit}
+      >
         <TextInput
           className={`${cssPrefix}__input`}
           label={currentLocale.name}
           onChange={handleParam}
           value={query.name}
-          name="name"
+          name='name'
           disabled={showLoader}
         />
         <TextInput
           className={`${cssPrefix}__input`}
-          label="Email"
+          label='Email'
           type={currentLocale.email}
           onChange={handleParam}
           value={query.email}
-          name="email"
+          name='email'
           disabled={showLoader}
         />
         <TextInput
@@ -79,7 +82,7 @@ const ContactsForm = () => {
           label={currentLocale.title}
           onChange={handleParam}
           value={query.title}
-          name="title"
+          name='title'
           disabled={showLoader}
         />
         <Textarea
@@ -88,15 +91,15 @@ const ContactsForm = () => {
           minRows={6}
           onChange={handleParam}
           value={query.message}
-          name="message"
+          name='message'
           disabled={showLoader}
         />
         <button className={`${cssPrefix}__button`}>
           {showLoader ? (
             <Loader
-              color="#FFFFFF"
-              size="sm"
-              variant="dots"
+              color='#FFFFFF'
+              size='sm'
+              variant='dots'
             />
           ) : (
             currentLocale.button

@@ -2,9 +2,7 @@ import About from '../../components/About/About';
 
 
 const AboutPage = () => {
-  return (
-    <About />
-  );
+  return <About />;
 };
 
 export default AboutPage;

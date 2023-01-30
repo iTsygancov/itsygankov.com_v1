@@ -14,16 +14,16 @@ const LangSwitch = () => {
     if (router.locale === 'en')
       router.push(
         router.asPath,
-        currentPath.includes('/blog/') ?
-          currentPath.slice(0, -3) + '-ru'
+        currentPath.includes('/blog/')
+          ? currentPath.slice(0, -3) + '-ru'
           : currentPath,
         { locale: 'ru', scroll: true },
       );
     if (router.locale === 'ru')
       router.push(
         router.asPath,
-        currentPath.includes('/blog/') ?
-          currentPath.slice(0, -3) + '-en'
+        currentPath.includes('/blog/')
+          ? currentPath.slice(0, -3) + '-en'
           : currentPath,
         { locale: 'en', scroll: true },
       );
@@ -34,8 +34,8 @@ const LangSwitch = () => {
       <Image
         className={`${cssPrefix}__icon`}
         src={language}
-        layout="intrinsic"
-        alt="Language icon"
+        layout='intrinsic'
+        alt='Language icon'
       />
       <div className={`${cssPrefix}__menu`}>
         <button

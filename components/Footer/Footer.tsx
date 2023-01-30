@@ -10,9 +10,9 @@ const cssPrefix = 'footer';
 const Footer = () => {
   return (
     <footer className={cssPrefix}>
-      <Container size="xl">
+      <Container size='xl'>
         <div className={`${cssPrefix}__content`}>
-          <div className="footer__menu">
+          <div className='footer__menu'>
             <Logo />
             <Navbar />
           </div>

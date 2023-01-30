@@ -19,10 +19,10 @@ const LatestPosts = ({ posts }: LatestPostsProps) => {
 
   return (
     <div className={cssPrefix}>
-      <Container size="xl">
+      <Container size='xl'>
         <div className={`${cssPrefix}__header`}>
           <h2 className={`${cssPrefix}__title`}>{currentLocale.title}</h2>
-          <Link href="blog/">
+          <Link href='blog/'>
             <a className={`${cssPrefix}__link`}>{currentLocale.link}</a>
           </Link>
         </div>

@@ -15,16 +15,20 @@ const AboutMiscellaneous = () => {
 
   return (
     <div className={cssPrefix}>
-      <h2 className={`${cssPrefix}__title`}>
-        {title}
-      </h2>
-      <Link href={src} locale={false}>
-        <a className={`${cssPrefix}__link`} target="_blank">
+      <h2 className={`${cssPrefix}__title`}>{title}</h2>
+      <Link
+        href={src}
+        locale={false}
+      >
+        <a
+          className={`${cssPrefix}__link`}
+          target='_blank'
+        >
           <Image
             className={`${cssPrefix}__link-icon`}
             src={downloadIcon}
-            layout="intrinsic"
-            alt="Download icon"
+            layout='intrinsic'
+            alt='Download icon'
           />
           {linkTitle}
         </a>

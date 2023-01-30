@@ -7,20 +7,23 @@ import Header from '../Header/Header';
 
 
 type LayoutProps = {
-    children: ReactNode
-}
+  children: ReactNode;
+};
 
 const Layout = ({ children }: LayoutProps) => {
   const router = useRouter();
   return (
     <>
       <Header />
-      <AnimatePresence initial={false} exitBeforeEnter>
+      <AnimatePresence
+        initial={false}
+        exitBeforeEnter
+      >
         <motion.main
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: .1 }}
+          transition={{ duration: 0.1 }}
           className='content'
           key={router.route}
         >
@@ -31,6 +34,5 @@ const Layout = ({ children }: LayoutProps) => {
     </>
   );
 };
-
 
 export default Layout;

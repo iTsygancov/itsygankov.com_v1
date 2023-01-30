@@ -19,14 +19,11 @@ const BlogCategories = ({ categories }: BlogCategoriesProps) => {
   return (
     <div className={cssPrefix}>
       <Head>
-        {
-          query.category && 
+        {query.category && (
           <title>{query.category + ' | < iTsygankov />'}</title>
-        }
+        )}
       </Head>
-      <h3 className={`${cssPrefix}__title`}>
-        {currentLocale.title}
-      </h3>
+      <h3 className={`${cssPrefix}__title`}>{currentLocale.title}</h3>
       <div className={`${cssPrefix}__list`}>
         {categories.map((category) => (
           <Link

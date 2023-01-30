@@ -43,8 +43,8 @@ const PostPreTag = ({ children }: PostPreTagProps) => {
         <Image
           className={`${cssPrefix}__button-icon`}
           src={copied ? iconCopySuccess : iconCopy}
-          layout="intrinsic"
-          alt="Successfully copied icon"
+          layout='intrinsic'
+          alt='Successfully copied icon'
         />
       </button>
       <pre>{children}</pre>

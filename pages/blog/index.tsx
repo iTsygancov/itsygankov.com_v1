@@ -8,18 +8,14 @@ import { postFilePaths, POSTS_PATH } from '../../utils/mdxUtils';
 
 
 interface PostPageProps {
-    posts: IPost[]
+  posts: IPost[];
 }
 
-
 const PostsPage = ({ posts }: PostPageProps) => {
-  return (
-    <Posts posts={posts} />
-  );
+  return <Posts posts={posts} />;
 };
 
 export default PostsPage;
-
 
 export function getStaticProps() {
   const posts = postFilePaths.map((filePath) => {

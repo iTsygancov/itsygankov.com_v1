@@ -24,7 +24,9 @@ const Post = ({ children, frontMatter }: PostProps) => {
         <p className={`${cssPrefix}__date`}>{date}</p>
         <h1 className={`${cssPrefix}__title`}>{title}</h1>
         <div className={`${cssPrefix}__description`}>
-          <span className={`${cssPrefix}__description-title`}>{currentLocale.category}</span>
+          <span className={`${cssPrefix}__description-title`}>
+            {currentLocale.category}
+          </span>
           <Link
             href={{
               pathname: '/blog',

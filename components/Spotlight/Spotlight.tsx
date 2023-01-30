@@ -29,16 +29,19 @@ const Spotlight = () => {
 
   return (
     <div className={cssPrefix}>
-      <button className={`${cssPrefix}__button`} onClick={() => openSpotlight()}>
+      <button
+        className={`${cssPrefix}__button`}
+        onClick={() => openSpotlight()}
+      >
         <Group spacing={12}>
           <div className={`${cssPrefix}__button-icon`}>
             <IconSearch />
           </div>
-          <span className={`${cssPrefix}__button-text`}>{currentLocale.buttonText}</span>
+          <span className={`${cssPrefix}__button-text`}>
+            {currentLocale.buttonText}
+          </span>
         </Group>
-        <Group className={`${cssPrefix}__tag`}>
-          {modKey} + K
-        </Group>
+        <Group className={`${cssPrefix}__tag`}>{modKey} + K</Group>
       </button>
     </div>
   );

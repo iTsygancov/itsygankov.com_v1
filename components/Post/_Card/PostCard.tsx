@@ -4,9 +4,8 @@ import { IPost } from '../../../types';
 
 
 type PostCardProps = {
-    post: IPost
-}
-
+  post: IPost;
+};
 
 const cssPrefix = 'postCard';
 
@@ -27,10 +26,10 @@ const PostCard = ({ post }: PostCardProps) => {
         </Link>
       </div>
       <Link
-        href={{ pathname: '/blog', query: { category } }} 
+        href={{ pathname: '/blog', query: { category } }}
         key={category}
       >
-        <a className={`${cssPrefix}__category`} > {category} </a>
+        <a className={`${cssPrefix}__category`}> {category} </a>
       </Link>
     </div>
   );

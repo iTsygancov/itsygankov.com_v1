@@ -11,7 +11,7 @@ import { postFilePaths, POSTS_PATH } from '../utils/mdxUtils';
 
 
 interface IndexProps {
-  posts: IPost[],
+  posts: IPost[];
 }
 
 export default function Index({ posts }: IndexProps) {

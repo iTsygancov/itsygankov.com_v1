@@ -30,36 +30,44 @@ const Posts = ({ posts }: PostsProps) => {
       <Head>
         <title>{currentLocale.meta.title}</title>
         <meta
-          name="description"
+          name='description'
           content={currentLocale.meta.description}
         />
-        <meta property="og:title" content={currentLocale.meta.title} />
-        <meta property="og:description" content={currentLocale.meta.description} />
+        <meta
+          property='og:title'
+          content={currentLocale.meta.title}
+        />
+        <meta
+          property='og:description'
+          content={currentLocale.meta.description}
+        />
       </Head>
-      <Container size="xl" className={cssPrefix}>
+      <Container
+        size='xl'
+        className={cssPrefix}
+      >
         <Grid>
           <Grid.Col sm={9}>
             <h1 className={`${cssPrefix}__title`}>
-              {
-                query.category
-                  ? currentLocale.categoryTitle + query.category
-                  : currentLocale.title
-              }
+              {query.category
+                ? currentLocale.categoryTitle + query.category
+                : currentLocale.title}
             </h1>
             <div className={`${cssPrefix}__list`}>
               {Object.keys(query).length !== 0
-                ? localePosts?.map((post) =>
-                  post.data.category === query.category && (
-                    <Link
-                      as={`/blog/${post.filePath.replace(/\.mdx?$/, '')}`}
-                      href={'/blog/[slug]'}
-                      key={post.data.id}
-                    >
-                      <a className={`${cssPrefix}__link`}>
-                        {post.data.title}
-                      </a>
-                    </Link>
-                  ),
+                ? localePosts?.map(
+                  (post) =>
+                    post.data.category === query.category && (
+                      <Link
+                        as={`/blog/${post.filePath.replace(/\.mdx?$/, '')}`}
+                        href={'/blog/[slug]'}
+                        key={post.data.id}
+                      >
+                        <a className={`${cssPrefix}__link`}>
+                          {post.data.title}
+                        </a>
+                      </Link>
+                    ),
                 )
                 : localePosts?.map((post) => (
                   <Link
@@ -77,7 +85,6 @@ const Posts = ({ posts }: PostsProps) => {
           </Grid.Col>
         </Grid>
       </Container>
-
     </>
   );
 };

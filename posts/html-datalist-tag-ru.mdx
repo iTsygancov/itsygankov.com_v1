@@ -1,11 +1,21 @@
 ---
-id: "11"
+id: '11'
 title: HTML тег <datalist>
 section: latest
 date: 7 декабря, 2022
 category: HTML
-description: Узнайте, как использовать HTML тег <datalist> для создания списка предопределенных опций для полей ввода и улучшения пользовательского опыта на ваших веб-страницах.
-keywords: ["HTML тег datalist", "поля ввода", "веб-разработка", "пользовательский опыт", "предопределенные опции"]
+description:
+  Узнайте, как использовать HTML тег <datalist> для создания списка
+  предопределенных опций для полей ввода и улучшения пользовательского опыта на
+  ваших веб-страницах.
+keywords:
+  [
+    'HTML тег datalist',
+    'поля ввода',
+    'веб-разработка',
+    'пользовательский опыт',
+    'предопределенные опции',
+  ]
 ---
 
 В этой статье мы разберем тэг `datalist`, создающий список предварительных
@@ -17,7 +27,12 @@ keywords: ["HTML тег datalist", "поля ввода", "веб-разрабо
 
 ```html
 <label for="car">
-  <input list="cars" name="cars" id="car" /> is my favorite car brand!
+  <input
+    list="cars"
+    name="cars"
+    id="car"
+  />
+  is my favorite car brand!
 </label>
 
 <datalist id="cars">
@@ -27,9 +42,10 @@ keywords: ["HTML тег datalist", "поля ввода", "веб-разрабо
   <option value="Bentley"></option>
 </datalist>
 ```
-Итак, для того, чтобы использовать `datalist`, мы должны создать тэг `input`
-и добавить ему атрибут `list=""`, значение которого должно быть таким же,
-как и `id` тэга `datalist`.
+
+Итак, для того, чтобы использовать `datalist`, мы должны создать тэг `input` и
+добавить ему атрибут `list=""`, значение которого должно быть таким же, как и
+`id` тэга `datalist`.
 
 Это создаст поле ввода с функцией автозаполнения.
 
@@ -37,19 +53,19 @@ keywords: ["HTML тег datalist", "поля ввода", "веб-разрабо
 
 <PostFrames>
   <iframe
-    height="300"
-    style={{ width: "100%" }}
-    scrolling="no"
-    title="HTML Datalist tag"
-    src="https://codepen.io/iTsygankov/embed/BaVVGOb?default-tab=html%2Cresult"
-    frameBorder="no"
-    loading="lazy"
+    height='300'
+    style={{ width: '100%' }}
+    scrolling='no'
+    title='HTML Datalist tag'
+    src='https://codepen.io/iTsygankov/embed/BaVVGOb?default-tab=html%2Cresult'
+    frameBorder='no'
+    loading='lazy'
     allowFullScreen={true}
   >
     See the Pen
-    <a href="https://codepen.io/iTsygankov/pen/BaVVGOb">HTML Datalist tag</a>
-    by Igor (<a href="https://codepen.io/iTsygankov">@iTsygankov</a>) on
-    <a href="https://codepen.io">CodePen</a>.
+    <a href='https://codepen.io/iTsygankov/pen/BaVVGOb'>HTML Datalist tag</a>
+    by Igor (<a href='https://codepen.io/iTsygankov'>@iTsygankov</a>) on
+    <a href='https://codepen.io'>CodePen</a>.
   </iframe>
 </PostFrames>
 
@@ -62,4 +78,11 @@ JavaScript.
 
 ## Поддержка браузерами
 
-Всю информацию о поддержке вы сможете найти <a href="https://caniuse.com/datalist" target="_blank">тут</a>
+Всю информацию о поддержке вы сможете найти
+
+<a
+  href='https://caniuse.com/datalist'
+  target='_blank'
+>
+  тут
+</a>

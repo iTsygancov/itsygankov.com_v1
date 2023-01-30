@@ -9,11 +9,7 @@ type ProgressBarProps = {
 
 const cssPrefix = 'progressBar';
 
-const ProgressBar = ({
-  label,
-  value,
-  title,
-}: ProgressBarProps) => {
+const ProgressBar = ({ label, value, title }: ProgressBarProps) => {
   return (
     <div className={cssPrefix}>
       <div className={`${cssPrefix}__header`}>

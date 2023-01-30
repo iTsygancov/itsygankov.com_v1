@@ -6,11 +6,7 @@ type PostFramesProps = {
 };
 
 const PostFrames = ({ children }: PostFramesProps) => {
-  return (
-    <>
-      {children}
-    </>
-  );
+  return <>{children}</>;
 };
 
 export default PostFrames;

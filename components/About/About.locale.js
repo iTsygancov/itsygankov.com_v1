@@ -8,7 +8,8 @@ const en = {
   link: 'contact me',
   meta: {
     title: 'About me | < iTsygankov />',
-    description: 'Igor Tsygankov is a software engineer who specializes in building and designing exceptional digital experiences.',
+    description:
+      'Igor Tsygankov is a software engineer who specializes in building and designing exceptional digital experiences.',
   },
 };
 
@@ -22,7 +23,8 @@ const ru = {
   link: 'связаться со мной',
   meta: {
     title: 'Обо мне | < iTsygankov />',
-    description: 'Игорь Цыганков - инженер-программист, специализирующийся на создании и проектировании исключительного цифрового опыта.',
+    description:
+      'Игорь Цыганков - инженер-программист, специализирующийся на создании и проектировании исключительного цифрового опыта.',
   },
 };
 

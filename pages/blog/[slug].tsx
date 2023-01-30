@@ -36,34 +36,46 @@ export default function PostPage({ source, frontMatter }: PostPageProps) {
       { ssr: false },
     ),
     Head,
-    p: ({ children }: any) => <p className="post__text">{children}</p>,
+    p: ({ children }: any) => <p className='post__text'>{children}</p>,
     pre: ({ children }: any) => <PostPreTag>{children}</PostPreTag>,
-    li: ({ children }: any) => <li className="post__listItem">{children}</li>,
+    li: ({ children }: any) => <li className='post__listItem'>{children}</li>,
     h2: ({ children }: any) => <PostSubtitle>{children}</PostSubtitle>,
   };
 
   const {
-    title, description, id, keywords,
+    title, description, id, keywords, 
   } = frontMatter;
 
   return (
-    <Container size="xl">
+    <Container size='xl'>
       <Head>
         <title>{title + ' | < iTsygankov />'}</title>
         <meta
-          name="description"
+          name='description'
           content={description}
           key={id}
         />
-        <meta property="og:title" content={title + ' | < iTsygankov />'} />
-        <meta property="og:description" content={description} />
-        <meta name="keywords" content={keywords?.join(', ')} />
+        <meta
+          property='og:title'
+          content={title + ' | < iTsygankov />'}
+        />
+        <meta
+          property='og:description'
+          content={description}
+        />
+        <meta
+          name='keywords'
+          content={keywords?.join(', ')}
+        />
       </Head>
       <Grid>
         <Grid.Col md={2} />
         <Grid.Col md={8}>
           <Post frontMatter={frontMatter}>
-            <MDXRemote {...source} components={components} />
+            <MDXRemote
+              {...source}
+              components={components}
+            />
           </Post>
         </Grid.Col>
         <Grid.Col md={2} />
