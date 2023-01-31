@@ -18,18 +18,13 @@ keywords:
   ]
 ---
 
-You can steer clear of many of the errors I made while attempting to figure out
-the best syntax highlighting option when you first set out on your path to
-implementation. By adding a syntax highlighter, you can make code snippets in
-your Next.js application resemble those in your preferred desktop editor. Some
-of the highlighters can also significantly slow down client load times and cause
-a negative user experience for many. Today, we'll examine a static generation
-technique that completes all the work in advance to give the user a quick and
-lightweight experience.
+You can steer clear of many of the errors I made while attempting to figure out the best syntax highlighting option when you first set out on your path to implementation. By adding a syntax highlighter, you can make code snippets in your Next.js application resemble those in your preferred desktop editor. Some of the highlighters can also significantly slow down client load times and cause a negative user experience for many. Today, we'll examine a static generation technique that completes all the work in advance to give the user a quick and lightweight experience.
 
 The final product will resemble this TypeScript:
 
-<PostCodeHeader>components/ExampleComponent.tsx</PostCodeHeader>
+<PostCodeHeader>
+  components/ExampleComponent.tsx
+</PostCodeHeader>
 
 ```tsx
 interface ExampleComponentProps {
@@ -43,8 +38,7 @@ const Example = ({ text }: ExampleComponentProps) => {
 export default Example;
 ```
 
-As you can see, the code snippet fits the design of my website, and if I want, I
-can also offer alternative designs for dark and light theme.
+As you can see, the code snippet fits the design of my website, and if I want, I can also offer alternative designs for dark and light theme.
 
 ## Static Syntax Highlighting
 
@@ -52,76 +46,31 @@ can also offer alternative designs for dark and light theme.
 
 We'll be using the following tech stack to create the snippets I use on my blog:
 
-- **Markdown files that are static**. We'll only be using local.md files from
-  your Next.js project for this tutorial.
-- <a
-    href='https://mdxjs.com/'
-    target='_blank'
-  >
-    <strong>MDX</strong>
-  </a>
-  . a Markdown compiler that enables rendering of JSX, together with customized components.
-  This is really powerful.
-- <a
-    href='https://github.com/hashicorp/next-mdx-remote'
-    target='_blank'
-  >
-    <strong>next-mdx-remote</strong>
-  </a>
-  . Lightweight tools that enable Next.js to properly hydrate on the client after
-  statically loading MDX.
-- Tokenize the code blocks and give stylistic classes, use
-  <a
-    href='https://highlightjs.org/'
-    target='_blank'
-  >
-    <strong>highlight.js</strong>
-  </a>
-  or <a
-    href='https://prismjs.com/'
-    target='_blank'
-  >
-    <strong>Prism</strong>
-  </a>
-  .
-- The
-  <a
-    href='https://github.com/rehypejs/rehype'
-    target='_blank'
-  >
-    <strong>Rehype</strong>
-  </a>
-  plugins that we'll be using for these highlighters are accessible through MDX,
-  which also uses Rehype internally.
+- **Markdown files that are static**. We'll only be using local.md files from your Next.js project for this tutorial.
+- <a href='https://mdxjs.com/' target='_blank'><strong>MDX</strong></a>. a Markdown compiler that enables rendering of JSX, together with customized components. This is really powerful.
+- <a href='https://github.com/hashicorp/next-mdx-remote' target='_blank'><strong>next-mdx-remote</strong></a>. Lightweight tools that enable Next.js to properly hydrate on the client after statically loading MDX.
+- Tokenize the code blocks and give stylistic classes, use <a href='https://highlightjs.org/' target='_blank'><strong>highlight.js</strong></a> or <a href='https://prismjs.com/' target='_blank'><strong>Prism</strong></a>.
+- The <a href='https://github.com/rehypejs/rehype' target='_blank'><strong>Rehype</strong></a> plugins that we'll be using for these highlighters are accessible through MDX, which also uses Rehype internally.
 
 ### Setup
 
-You require a functioning Next.js app with a page on which you want to load the
-Markdown content before you can proceed.
+You require a functioning Next.js app with a page on which you want to load the Markdown content before you can proceed.
 
-<a
-  href='https://nextjs.org/docs/api-reference/create-next-app'
-  target='_blank'
->
-  <strong>Create Next App</strong>
-</a> can help you launch a beginner project if you're starting from scratch. Install
-the dependencies we'll need once this is ready.
+<a href='https://nextjs.org/docs/api-reference/create-next-app' target='_blank'><strong>Create Next App</strong></a> can help you launch a beginner project if you're starting from scratch. Install the dependencies we'll need once this is ready.
 
 ```bash
 npm i --save next-mdx-remote rehype-highlight
 ```
 
-**Highlight.js or Prism?** Although all solutions have advantages, we'll be
-utilizing Highlight.js for this example. Simply swap out `@mapbox/rehype-prism`
-for `rehype-highlight` if you wish to use Prism instead, and then use the Prism
-stylesheets in place of the linked Highlight.js stylesheets.
+**Highlight.js or Prism?** Although all solutions have advantages, we'll be utilizing Highlight.js for this example. Simply swap out `@mapbox/rehype-prism` for `rehype-highlight` if you wish to use Prism instead, and then use the Prism stylesheets in place of the linked Highlight.js stylesheets.
 
 ### Adding the Markdown
 
-Begin by generating your first Markdown file! We'll make a `posts` folder in
-your Next.js project and add an example blog post to it.
+Begin by generating your first Markdown file! We'll make a `posts` folder in your Next.js project and add an example blog post to it.
 
-<PostCodeHeader>posts/example.md</PostCodeHeader>
+<PostCodeHeader>
+  posts/example.md
+</PostCodeHeader>
 
 ````md
 # My Example Blog Post
@@ -139,13 +88,11 @@ interface ITest {
 
 ### Serializing the Markdown
 
-We'll use the `getStaticProps` functionality in your Next.js page to send a
-collection of props to the main page component. `getStaticProps` is normally
-used at build time in production, so if you use it correctly, Next.js will code
-split such that none of the dependencies used here are transmitted in client
-bundles. Load your Markdown file, then use `next-mdx-remote` to serialize it:
+We'll use the `getStaticProps` functionality in your Next.js page to send a collection of props to the main page component. `getStaticProps` is normally used at build time in production, so if you use it correctly, Next.js will code split such that none of the dependencies used here are transmitted in client bundles. Load your Markdown file, then use `next-mdx-remote` to serialize it:
 
-<PostCodeHeader>pages/blog/example.tsx</PostCodeHeader>
+<PostCodeHeader>
+  pages/blog/example.tsx
+</PostCodeHeader>
 
 ```tsx
 import { serialize } from 'next-mdx-remote/serialize';
@@ -171,7 +118,9 @@ export const getStaticProps = async () => {
 
 You'll now use the `MDXRemote` component to render your serialized MDX.
 
-<PostCodeHeader>pages/blog/example.tsx</PostCodeHeader>
+<PostCodeHeader>
+  pages/blog/example.tsx
+</PostCodeHeader>
 
 ```tsx
 import { MDXRemote } from 'next-mdx-remote';
@@ -189,30 +138,19 @@ const Page = ({ mdxSource }) => {
 export default Page;
 ```
 
-If you navigate to `localhost:3000/blog/example`, you should now see the
-rendered Markdown content!
+If you navigate to `localhost:3000/blog/example`, you should now see the rendered Markdown content!
 
-<a
-  href='https://res.cloudinary.com/deihopdzq/image/upload/v1670959749/itsygankov.com/Next.js%20-%20static%20syntax%20highlighting%20for%20Markdown/1_hmiotv.png'
-  target='_blank'
->
-  <img
-    src='https://res.cloudinary.com/deihopdzq/image/upload/v1670959749/itsygankov.com/Next.js%20-%20static%20syntax%20highlighting%20for%20Markdown/1_hmiotv.png'
-    alt='Step 1'
-  />
-</a>
+<a href='https://res.cloudinary.com/deihopdzq/image/upload/v1670959749/itsygankov.com/Next.js%20-%20static%20syntax%20highlighting%20for%20Markdown/1_hmiotv.png' target='_blank'><img src='https://res.cloudinary.com/deihopdzq/image/upload/v1670959749/itsygankov.com/Next.js%20-%20static%20syntax%20highlighting%20for%20Markdown/1_hmiotv.png' alt='Step 1' /></a>
 
-If your app includes styles for `pre` or `code` tags, you may see those styles
-applied, but you cannot style individual syntax tokens at this time. Let's get
-that taken care of right away!
+If your app includes styles for `pre` or `code` tags, you may see those styles applied, but you cannot style individual syntax tokens at this time. Let's get that taken care of right away!
 
 ### Highlighting the Code
 
-To provide syntax highlighting to the serialized code blocks, we'll now use the
-Rehype plugin. Wherever you invoked the serialize() method, make the following
-simple change:
+To provide syntax highlighting to the serialized code blocks, we'll now use the Rehype plugin. Wherever you invoked the serialize() method, make the following simple change:
 
-<PostCodeHeader>pages/blog/example.tsx</PostCodeHeader>
+<PostCodeHeader>
+  pages/blog/example.tsx
+</PostCodeHeader>
 
 ```tsx
 import rehypeHighlight from 'rehype-highlight';
@@ -226,81 +164,32 @@ export const getStaticProps = async () => {
 };
 ```
 
-If you look at the page, you won't notice any instant changes. If you open the
-inspector, you'll notice that Highlight.js has now created classes for tokens
-within your code block!
+If you look at the page, you won't notice any instant changes. If you open the inspector, you'll notice that Highlight.js has now created classes for tokens within your code block!
 
-<a
-  href='https://res.cloudinary.com/deihopdzq/image/upload/v1670959785/itsygankov.com/Next.js%20-%20static%20syntax%20highlighting%20for%20Markdown/2_v1mvha.png'
-  target='_blank'
->
-  <img
-    src='https://res.cloudinary.com/deihopdzq/image/upload/v1670959785/itsygankov.com/Next.js%20-%20static%20syntax%20highlighting%20for%20Markdown/2_v1mvha.png'
-    alt='Step 1'
-  />
-</a>
+<a href='https://res.cloudinary.com/deihopdzq/image/upload/v1670959785/itsygankov.com/Next.js%20-%20static%20syntax%20highlighting%20for%20Markdown/2_v1mvha.png' target='_blank'><img src='https://res.cloudinary.com/deihopdzq/image/upload/v1670959785/itsygankov.com/Next.js%20-%20static%20syntax%20highlighting%20for%20Markdown/2_v1mvha.png' alt='Step 1' /></a>
 
 ### Adding styles
 
-Navigate to the Highlight.js website's download page. There are several
-alternatives available depending on how you want to load your styles. You may
-load a stylesheet using their offered CDN, or you can download a CSS file for
-your selected theme and load it using Next.js's built-in CSS support (which
-enables hot reloading).
+Navigate to the Highlight.js website's download page. There are several alternatives available depending on how you want to load your styles. You may load a stylesheet using their offered CDN, or you can download a CSS file for your selected theme and load it using Next.js's built-in CSS support (which enables hot reloading).
 
-If you're downloading a theme, add a global stylesheet to the `pages/_app.js`
-file as described in the Next.js manual. It should be noted that this loads the
-CSS for the entire app, not just your blog post. If you simply want to apply it
-to one page or component, you'll need to look at CSS Modules or a CSS-in-JS
-solution.
+If you're downloading a theme, add a global stylesheet to the `pages/_app.js` file as described in the Next.js manual. It should be noted that this loads the CSS for the entire app, not just your blog post. If you simply want to apply it to one page or component, you'll need to look at CSS Modules or a CSS-in-JS solution.
 
-<PostCodeHeader>pages/_app.tsx</PostCodeHeader>
+<PostCodeHeader>
+  pages/_app.tsx
+</PostCodeHeader>
 
 ```tsx
 import '../styles/hljs.css';
 ```
 
-You will see a correctly highlighted code block now that the app understands
-what the Highlight.js classes should look like.
+You will see a correctly highlighted code block now that the app understands what the Highlight.js classes should look like.
 
-<a
-  href='https://res.cloudinary.com/deihopdzq/image/upload/v1670959785/itsygankov.com/Next.js%20-%20static%20syntax%20highlighting%20for%20Markdown/3_nkz33z.png'
-  target='_blank'
->
-  <img
-    src='https://res.cloudinary.com/deihopdzq/image/upload/v1670959785/itsygankov.com/Next.js%20-%20static%20syntax%20highlighting%20for%20Markdown/3_nkz33z.png'
-    alt='Step 1'
-  />
-</a>
+<a href='https://res.cloudinary.com/deihopdzq/image/upload/v1670959785/itsygankov.com/Next.js%20-%20static%20syntax%20highlighting%20for%20Markdown/3_nkz33z.png' target='_blank' ><img src='https://res.cloudinary.com/deihopdzq/image/upload/v1670959785/itsygankov.com/Next.js%20-%20static%20syntax%20highlighting%20for%20Markdown/3_nkz33z.png' alt='Step 1' /></a>
 
 ## Conclusion
 
-Because syntax highlighting at build time provides less flexibility than a
-client-side solution, you may have to forego some of the functionality provided
-in a tool like
+Because syntax highlighting at build time provides less flexibility than a client-side solution, you may have to forego some of the functionality provided in a tool like
 
-<a
-  href='https://github.com/react-syntax-highlighter/react-syntax-highlighter'
-  target='_blank'
->
-  <strong>React Syntax Highlighter</strong>
-</a> to get these speed gains. If the functionalities are insufficient for your needs,
-you may switch to utilizing React Syntax Highlighter by following the run time instructions
-in the
-<a
-  href='https://mdxjs.com/guides/syntax-highlighting/#syntax-highlighting-at-run-time'
-  target='_blank'
->
-  <strong>MDX Syntax Highlighting</strong>
-</a> manual. To defer the initial load, use one of the async build options—this may
-necessitate the use of Next.js's
-<a
-  href='https://nextjs.org/docs/advanced-features/dynamic-import'
-  target='_blank'
->
-  <strong>Dynamic Import</strong>
-</a>
-.
+<a href='https://github.com/react-syntax-highlighter/react-syntax-highlighter' target='_blank'><strong>React Syntax Highlighter</strong></a> to get these speed gains. If the functionalities are insufficient for your needs, you may switch to utilizing React Syntax Highlighter by following the run time instructions in the <a href='https://mdxjs.com/guides/syntax-highlighting/#syntax-highlighting-at-run-time' target='_blank'><strong>MDX Syntax Highlighting</strong></a> manual. To defer the initial load, use one of the async build options—this may necessitate the use of Next.js's <a href='https://nextjs.org/docs/advanced-features/dynamic-import' target='_blank' > <strong>Dynamic Import</strong> </a> .
 
-If you only want to show a few lines of lovely highlighted code, this static
-export method is a quick and easy way to spice up your snippets.
+If you only want to show a few lines of lovely highlighted code, this static export method is a quick and easy way to spice up your snippets.

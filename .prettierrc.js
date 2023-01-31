@@ -4,6 +4,6 @@ module.exports = {
   semi: true,
   singleQuote: true,
   jsxSingleQuote: true,
-  proseWrap: 'always',
+  proseWrap: 'never',
   singleAttributePerLine: true,
 };
